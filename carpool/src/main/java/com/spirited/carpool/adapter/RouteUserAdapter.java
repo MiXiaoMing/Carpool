@@ -1,6 +1,7 @@
 package com.spirited.carpool.adapter;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,15 +12,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.appframe.library.component.image.ImageLoader;
+import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.utils.DistanceUtil;
 import com.spirited.carpool.NavigationActivity;
 import com.spirited.carpool.R;
+import com.spirited.carpool.api.route.Route;
 import com.spirited.carpool.api.route.UserInfo;
+import com.spirited.support.constants.RouteConstants;
 
 import java.util.ArrayList;
 
 
 public class RouteUserAdapter extends BaseAdapter {
     private NavigationActivity activity;
+    private Route route;
     private ArrayList<UserInfo> entities = new ArrayList<>();
 
     public RouteUserAdapter(NavigationActivity activity) {
@@ -62,6 +68,7 @@ public class RouteUserAdapter extends BaseAdapter {
         ImageLoader.normal(activity, userInfo.avatar, R.drawable.default_image_white, viewHolder.ivIcon);
         viewHolder.tvNick.setText(userInfo.name);
         viewHolder.tvEnd.setText("下车点：" + userInfo.endDesc);
+
         viewHolder.llyTelephone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,12 +79,24 @@ public class RouteUserAdapter extends BaseAdapter {
             }
         });
 
+        double distance = DistanceUtil.getDistance(new LatLng(route.latitude, route.longitude), new LatLng(userInfo.latitude, userInfo.longitude));
+        if (distance <= RouteConstants.distance_arrived) {
+            viewHolder.llyTelephone.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        } else if (distance <= RouteConstants.distance_near) {
+            viewHolder.llyTelephone.setBackgroundColor(Color.parseColor("#CCFF00"));
+        } else if (distance <= RouteConstants.distance_medium) {
+            viewHolder.llyTelephone.setBackgroundColor(Color.parseColor("#FFCC00"));
+        } else {
+            viewHolder.llyTelephone.setBackgroundColor(Color.parseColor("#DD4822"));
+        }
+
         return convertView;
     }
 
-    public void addAll(ArrayList<UserInfo> entities) {
+    public void addAll(Route route) {
+        this.route = route;
         this.entities.clear();
-        this.entities.addAll(entities);
+        this.entities.addAll(route.userInfoList);
         notifyDataSetChanged();
     }
 

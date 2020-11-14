@@ -11,4 +11,9 @@ public class RouteConstants {
     // 路径弹框 类型
     public static final String dialog_setting_type_add = "add";
     public static final String dialog_setting_type_modify = "modify";
+
+    // 距离 判断
+    public static final int distance_arrived = 200;
+    public static final int distance_near = 500;
+    public static final int distance_medium = 2000;
 }

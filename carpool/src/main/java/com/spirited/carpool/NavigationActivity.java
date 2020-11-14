@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.appframe.library.component.image.ImageLoader;
@@ -31,7 +30,7 @@ import com.baidu.mapapi.search.route.PlanNode;
 import com.baidu.mapapi.search.route.RoutePlanSearch;
 import com.baidu.mapapi.search.route.TransitRouteResult;
 import com.baidu.mapapi.search.route.WalkingRouteResult;
-import com.github.jdsjlzx.recyclerview.LRecyclerView;
+import com.baidu.mapapi.utils.DistanceUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.spirited.carpool.adapter.RouteUserAdapter;
@@ -45,6 +44,7 @@ import com.spirited.carpool.overlay.DrivingRouteOverlay;
 import com.spirited.support.AutoBaseTitleActivity;
 import com.spirited.support.constants.RouteConstants;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -119,7 +119,8 @@ public class NavigationActivity extends AutoBaseTitleActivity {
         // 开启定位图层
         baiduMap.setMyLocationEnabled(true);
         // 初始化
-        BaiduMapConfig.setLevel(baiduMap, 15.0f);
+        // TODO: 2020/11/14 需要改成 18
+        BaiduMapConfig.setLevel(baiduMap, 14.0f);
 
         // 标记点击事件
         baiduMap.setOnMarkerClickListener(markerClickListener);
@@ -145,7 +146,8 @@ public class NavigationActivity extends AutoBaseTitleActivity {
     private void initData() {
         String json = SharePreferences.getStringWithDefault("route", null);
         if (!TextUtils.isEmpty(json)) {
-            ArrayList<Route> routes = new Gson().fromJson(json, new TypeToken<ArrayList<Route>>() {}.getType());
+            ArrayList<Route> routes = new Gson().fromJson(json, new TypeToken<ArrayList<Route>>() {
+            }.getType());
             if (routes != null && routes.size() > 0) {
                 routeList = routes;
                 showRoutePath();
@@ -209,11 +211,11 @@ public class NavigationActivity extends AutoBaseTitleActivity {
     /**
      * 展示 多人 信息框
      */
-    private void showMultipleInfoDialog(ArrayList<UserInfo> userInfos) {
+    private void showMultipleInfoDialog(Route route) {
         llyOne.setVisibility(View.GONE);
 
         llyMultiple.setVisibility(View.VISIBLE);
-        userAdapter.addAll(userInfos);
+        userAdapter.addAll(route);
     }
 
     /**
@@ -259,6 +261,17 @@ public class NavigationActivity extends AutoBaseTitleActivity {
                 continue;
             }
 
+
+            for (int j = 0; j < routeList.get(i).userInfoList.size(); ++j) {
+                double distance = DistanceUtil.getDistance(new LatLng(routeList.get(i).latitude, routeList.get(i).longitude),
+                        new LatLng(routeList.get(i).userInfoList.get(j).latitude, routeList.get(i).userInfoList.get(j).longitude));
+                Logger.getLogger().d("两点之间距离：" + distance);
+                if (distance < RouteConstants.distance_arrived) {
+                } else {
+                    BaiduMapConfig.addOverlay(baiduMap, routeList.get(i).userInfoList.get(j).latitude, routeList.get(i).userInfoList.get(j).longitude, R.drawable.icon_route2);
+                }
+            }
+
             int count = routeList.get(i).userInfoList.size();
             if (count == 0) {
                 BaiduMapConfig.addOverlay(baiduMap, routeList.get(i).latitude, routeList.get(i).longitude, R.drawable.icon_route2);
@@ -286,6 +299,7 @@ public class NavigationActivity extends AutoBaseTitleActivity {
         }
     }
 
+    int count = 0;
     /**
      * 经纬度 信息监听
      */
@@ -304,7 +318,10 @@ public class NavigationActivity extends AutoBaseTitleActivity {
                     .direction(bdLocation.getDirection())
                     .build());
 
-            BaiduMapConfig.moveToMiddle(baiduMap, bdLocation.getLatitude(), bdLocation.getLongitude());
+            if (count == 0) {
+                BaiduMapConfig.moveToMiddle(baiduMap, bdLocation.getLatitude(), bdLocation.getLongitude());
+                ++count;
+            }
         }
     };
 
@@ -314,25 +331,31 @@ public class NavigationActivity extends AutoBaseTitleActivity {
     BaiduMap.OnMarkerClickListener markerClickListener = new BaiduMap.OnMarkerClickListener() {
         @Override
         public boolean onMarkerClick(Marker marker) {
-            Route route = null;
             // 路径 标记
             for (int i = 0; i < routeList.size(); ++i) {
                 if (routeList.get(i).latitude == marker.getPosition().latitude &&
                         routeList.get(i).longitude == marker.getPosition().longitude) {
-                    route = routeList.get(i);
+                    Route route = routeList.get(i);
 
                     if (route.userInfoList.size() == 1) {
                         showSingleInfoDialog(route.userInfoList.get(0));
+                        return true;
                     } else if (route.userInfoList.size() > 1) {
-                        showMultipleInfoDialog(route.userInfoList);
+                        showMultipleInfoDialog(routeList.get(i));
+                        return true;
+                    }
+                } else {
+                    for (int j = 0; j < routeList.get(i).userInfoList.size(); ++j) {
+                        if (routeList.get(i).userInfoList.get(j).latitude == marker.getPosition().latitude
+                                && routeList.get(i).userInfoList.get(j).longitude == marker.getPosition().longitude) {
+                            showSingleInfoDialog(routeList.get(i).userInfoList.get(j));
+                            return true;
+                        }
                     }
                 }
             }
 
-            // 行人 标记
-            // TODO: 2020/11/14 行人 标志点击
-//            showInfoDialog();
-            return true;
+            return false;
         }
     };
 
@@ -392,7 +415,7 @@ public class NavigationActivity extends AutoBaseTitleActivity {
 
                         for (int i = 0; i < routeList.size(); ++i) {
                             if (routeList.get(i).type.equals(RouteConstants.route_type_wait)) {
-                                int count = 1;
+                                int count = random.nextInt(20);
                                 ArrayList<UserInfo> userInfos = routeList.get(i).userInfoList;
                                 for (int j = 0; j < count; ++j) {
                                     UserInfo userInfo = new UserInfo();
@@ -402,6 +425,8 @@ public class NavigationActivity extends AutoBaseTitleActivity {
                                     userInfo.endDesc = "保定易县";
                                     userInfo.name = "测试账号" + random.nextInt(10);
                                     userInfo.telephone = "13718863263";
+                                    userInfo.latitude = routeList.get(i).latitude + 0.0001 * random.nextInt(100);
+                                    userInfo.longitude = routeList.get(i).longitude + 0.0001 * random.nextInt(100);
                                     userInfos.add(userInfo);
                                 }
                             }
