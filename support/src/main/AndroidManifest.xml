@@ -1,0 +1,60 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.spirited.support">
+    <!-- 这个权限用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 这个权限用于访问GPS定位-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 获取运营商信息，用于支持提供运营商信息相关的接口-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!-- 用于读取手机当前的状态-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 访问网络，网络定位需要上网-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- SD卡读取权限，用户写入离线定位数据-->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <!--允许应用读取低级别的系统日志文件 -->
+    <uses-permission android:name="android.permission.READ_LOGS" />
+
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <!--拨打电话 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <!-- 外部存储读权限，调试工具加载本地补丁需要 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application>
+
+        <activity
+            android:name="com.tencent.bugly.beta.ui.BetaActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:theme="@android:style/Theme.Translucent" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+        <!--hotfix-->
+        <meta-data
+            android:name="com.taobao.android.hotfix.IDSECRET"
+            android:value="31702252" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.APPSECRET"
+            android:value="9aa6b48bb9150a1ec69f1f9d98f2a5aa" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.RSASECRET"
+            android:value="MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCM9d/jDR41FDURHHdOZzEkfOfSVRh2QT9yqFhRFRvlg3l8L13mp5yoG8bhUvwDemNx0/8vOU+9zZmb5dAct00Uedoj/sdhykDb7eGw2rrczbk2jLY+8OEv5Mun+Fc7bDhJNQPXjVtW3/P5u5ZHqQcSYI1s+kNeCBHtFhB2S/pdVMF06k+I6PU6ofvewEZ+GIOQwjQu2RAd7Z2tXG49K6X3qmg5SZyOOumqOTgDur4qLIMN+UOql2wpVP4bxpUsKINBcn2OnggK2xNhX3NDQr4Sz6XIS1jrCQkP1DYNxsk1Nl+RwKfL8yxJwZH7XodHy3Goiavmpv0dhdhDkNi9uo4DAgMBAAECggEBAIfx1SOfkiN0wp0nC/UEVoOvJtBWG0ppMOy+aLaCGi5mdvKKqA/8VHxYlZzXsI8WKPQtla0Qo9QUhnGw2N3o9iCqR/RxEg9AxP6WVBSBTrgGe/qdCGJ5Y2QST0tGmbKIc1w/Ed5/yLhnMmAGRzADVvulPJ/+WJxGQiuaHPRJ4ELDMKTsDT17TXs948xeGxti6BdnmKWfQaiilVBGmJ7SqTT1P7lR0mTmlPTQkr0SdC4HsNdmyg9eltLY6BMWt2ayzpGS8Xd/QVaPmaxqWZl4zjpXFr52XyqhmQbcbC1Q+B04ADH01HH7uZxB8PKh2/NK9JAYw3QKKl+9xictBlStmvECgYEA9345f75ZVmcbjXKL4t46wNbMmzdtWysT1n7Zj/3SA3HEI5NAeyhMIRQ+Y8HT840sZgunlqo5ChdYvzt2UUhlF8ZuW861d+OriSOiAyr39J5oPqAKnHZQOFsrNvqYG1oE2DVfXg7oTf389Oz5QxoBqn0/cPCCo20lrYm+6Y98F3kCgYEAkc47u5HnLiLirEk+I/B94TUyCDMHkd+VFsl/LLh3KmJcNeMOMtTzsGVSPaCzzhtTf2QJ008D2H3Uffroos6dp1WiPFFieFaFns8AE92utqHfFt+u1ll+HY77eQXWAgh5ulq+XNMDxAeeiSJs1opTeRdM458Q3NSSnCOMdyBkZlsCgYB4h+uez+gYUTy05V1FDq+UbMfWq+bBKLiPlNWF77pQ3R4FqVgU4qo4zfAYizQa/9zokbJ7iMkgpgAdmerkaRp6urPSWFg+XA2VS1pCqrF5W5AvN6gTTPeCirwAGYjsgSms1klsuFvgZ9rCuYonaMn46uhzq14kEyrvWg81FiD8GQKBgA4e5gQNZlE+iatb0IvUf6xu5XCL2KDVAXBahVmEZ+4P5pRFcBuWKh+cQHG9fYxpcxW0T4tKbLnrvceRpDQYRIZvMa4bx6iV4Iz3yS8jWgdP9/YUJa+WrTMZpNscqJQ70+YrYaJFwWibwEvRrK6+aMUib4zf29c3MxeyDal/1plfAoGBAL+K2mNz8SYT2UWMmc7qx1OYg8yhq8LywDifB0ryaOHdNqIeHhx/IdRaBdGEoPwVcfD5hOeCgxKtQo6lfX5Nb0qzMY/AS/67g8+8A0LLdn1A+qfStgXzWlYfxMNbfPRDrTyoLBOhHlwfxmToMsOpVBdjDg6T+uV9JbjInrQgMF+G" />
+    </application>
+</manifest>

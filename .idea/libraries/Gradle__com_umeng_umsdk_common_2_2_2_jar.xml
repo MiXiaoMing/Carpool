@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.umeng.umsdk:common:2.2.2@jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.umeng.umsdk/common/2.2.2/e65f03de757b63787f9a8e92edfd7c39f9c85efe/common-2.2.2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.umeng.umsdk/common/2.2.2/6da2aa0feaadd6532a9ee03191bc402183797d09/common-2.2.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.umeng.umsdk/common/2.2.2/6da2aa0feaadd6532a9ee03191bc402183797d09/common-2.2.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

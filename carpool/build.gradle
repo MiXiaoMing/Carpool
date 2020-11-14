@@ -1,0 +1,83 @@
+import java.util.concurrent.TimeUnit
+
+apply plugin: 'com.android.application'
+//apply from: 'tinker-support.gradle'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.spirited.carpool"
+        minSdkVersion 18
+        targetSdkVersion 27
+        versionCode 100
+        versionName "1.0.0"
+
+        multiDexEnabled = true
+
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            //热修复支持五种
+            abiFilters 'arm64-v8a', 'armeabi', 'armeabi-v7a', 'x86', 'x86_64'
+        }
+    }
+
+    signingConfigs {
+        release {
+            File propFile = file('../signing.properties');
+            if (propFile.exists()) {
+                def Properties props = new Properties()
+                props.load(new FileInputStream(propFile))
+                if (props.containsKey('STORE_FILE') && props.containsKey('STORE_PASSWORD') &&
+                        props.containsKey('KEY_ALIAS') && props.containsKey('KEY_PASSWORD')) {
+                    storeFile = file(props['STORE_FILE'])
+                    storePassword = props['STORE_PASSWORD']
+                    keyAlias = props['KEY_ALIAS']
+                    keyPassword = props['KEY_PASSWORD']
+                }
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.release
+
+            buildConfigField "String", "APP_PUBLISH_TAG", "\"${APP_PUBLISH_TAG}\""
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+
+            buildConfigField "String", "APP_PUBLISH_TAG", "\"${APP_PUBLISH_TAG}\""
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/INDEX.LIST'
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    configurations { all { exclude module: 'httpclient' exclude module: 'commons-logging' } }
+    configurations { all { exclude module: 'httpclient' exclude module: 'opengl-api' } }
+    configurations { all { exclude module: 'httpclient' exclude module: 'xmlParserAPIs' } }
+    configurations { all { exclude module: 'httpclient' exclude module: 'xpp3' } }
+    configurations { all { exclude module: 'httpclient' exclude module: 'android' } }
+}
+
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor(3, TimeUnit.SECONDS)
+    resolutionStrategy.cacheDynamicVersionsFor(3, TimeUnit.SECONDS)
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
+
+    api project(':support')
+}

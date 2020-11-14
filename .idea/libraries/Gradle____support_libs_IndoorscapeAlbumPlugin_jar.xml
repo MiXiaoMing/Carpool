@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: ./support/libs/IndoorscapeAlbumPlugin.jar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/support/libs/IndoorscapeAlbumPlugin.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60px"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    android:gravity="center_vertical">
+
+    <com.spirited.support.component.RoundCornerImageView
+        android:id="@+id/ivIcon"
+        android:layout_width="45px"
+        android:layout_height="45px"
+        app:radius="5px"
+        tools:src="@drawable/icon_app"/>
+
+    <LinearLayout
+        android:layout_width="0px"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_marginLeft="5px"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <com.spirited.support.component.FontTextView
+            android:id="@+id/tvNick"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#313131"
+            android:textSize="17px"
+            android:textStyle="bold"
+            tools:text="米晓明"/>
+
+        <com.spirited.support.component.FontTextView
+            android:id="@+id/tvEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7px"
+            android:textSize="12sp"
+            android:textColor="#3a3a3a"
+            android:text="下车点："/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llyTelephone"
+        android:layout_width="65px"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="30px"
+            android:layout_height="30px"
+            android:src="@drawable/icon_telephone"/>
+
+    </LinearLayout>
+
+</LinearLayout>
