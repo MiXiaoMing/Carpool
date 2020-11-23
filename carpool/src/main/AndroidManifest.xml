@@ -27,6 +27,11 @@
         <activity android:name=".RouteSettingActivity" android:screenOrientation="portrait"/>
         <!--   路线导航     -->
         <activity android:name=".NavigationActivity" android:screenOrientation="portrait"/>
+        <!--   路线导航     -->
+        <activity android:name=".WaitingHallActivity" android:screenOrientation="portrait"/>
+        <!--   车次详情     -->
+        <activity android:name=".TrainDetailActivity" android:screenOrientation="portrait"/>
+
 
         <!--自动适配-->
         <meta-data android:name="design_width" android:value="375" />

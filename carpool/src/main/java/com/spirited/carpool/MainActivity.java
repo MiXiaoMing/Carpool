@@ -20,6 +20,7 @@ import com.baidu.location.BDNotifyListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.spirited.support.AutoBaseTitleActivity;
+import com.umeng.commonsdk.debug.I;
 
 import java.util.List;
 
@@ -48,6 +49,7 @@ public class MainActivity extends AutoBaseTitleActivity {
         findViewById(R.id.btnLogin).setOnClickListener(clickListener);
         findViewById(R.id.btnRoute).setOnClickListener(clickListener);
         findViewById(R.id.btnNavigation).setOnClickListener(clickListener);
+        findViewById(R.id.btnWaitingHall).setOnClickListener(clickListener);
     }
 
     /**
@@ -143,6 +145,8 @@ public class MainActivity extends AutoBaseTitleActivity {
                 Intent intent = new Intent(MainActivity.this, NavigationActivity.class);
                 intent.putExtra("pathID", "001");
                 startActivity(intent);
+            } else if (id == R.id.btnWaitingHall) {
+                startActivity(new Intent(MainActivity.this, WaitingHallActivity.class) );
             }
         }
     };

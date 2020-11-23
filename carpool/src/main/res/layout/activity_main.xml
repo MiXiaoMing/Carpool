@@ -27,4 +27,10 @@
         android:layout_height="wrap_content"
         android:text="路线导航"/>
 
+    <Button
+        android:id="@+id/btnWaitingHall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="候车大厅"/>
+
 </LinearLayout>

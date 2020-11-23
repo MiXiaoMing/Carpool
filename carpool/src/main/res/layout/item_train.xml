@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/shape_dialog_bg"
+    android:padding="8dp"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.spirited.support.component.RoundCornerImageView
+            android:id="@+id/ivAvatar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:radius="5dp"
+            tools:src="@drawable/icon_app"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="bottom">
+
+            <com.spirited.support.component.FontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:text="¥ "/>
+
+            <com.spirited.support.component.FontTextView
+                android:id="@+id/tvPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="28sp"
+                android:textColor="#E61A1A"
+                android:text="45"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <com.spirited.support.component.FontTextView
+                android:id="@+id/tvStart"
+                android:layout_width="105dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                tools:text="北京六里桥北京北京北" />
+
+            <com.spirited.support.component.FontTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="25sp"
+                android:textColor="@color/blue_text_light"
+                android:text=" ---> "/>
+
+            <com.spirited.support.component.FontTextView
+                android:id="@+id/tvEnd"
+                android:layout_width="105dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                tools:text="保定易县保定易县保定"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:orientation="horizontal">
+
+            <com.spirited.support.component.FontTextView
+                android:id="@+id/tvStartTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:text="00:00"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:layout_weight="1"/>
+
+            <com.spirited.support.component.FontTextView
+                android:id="@+id/tvEndTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:text="00:00"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp">
+
+            <com.spirited.support.component.FontTextView
+                android:id="@+id/tvNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:textSize="22sp"
+                android:textColor="@color/black"
+                android:text="0/10"/>
+
+            <com.spirited.support.component.FontTextView
+                android:id="@+id/tvOrder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/blue_text_light"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:text="预约"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
