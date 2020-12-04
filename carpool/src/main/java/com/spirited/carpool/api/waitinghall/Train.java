@@ -7,7 +7,6 @@ import java.io.Serializable;
  */
 public class Train implements Serializable {
     public String id;
-    public CarInfo carInfo;
     public String startPoint, endPoint;
     public String startTime, endTime;
     public float price;

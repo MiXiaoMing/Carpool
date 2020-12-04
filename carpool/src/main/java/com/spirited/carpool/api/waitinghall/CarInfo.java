@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 public class CarInfo implements Serializable {
     public String id, avatar, contact, telephone;
+    public String carNumber;
     public int totalOrderedCount;
     public int approvedLoadNumber;
     public String description;

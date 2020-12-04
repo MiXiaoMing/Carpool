@@ -13,16 +13,16 @@ import android.widget.TextView;
 import com.appframe.library.component.image.ImageLoader;
 import com.spirited.carpool.R;
 import com.spirited.carpool.TrainDetailActivity;
-import com.spirited.carpool.api.waitinghall.Train;
+import com.spirited.carpool.api.waitinghall.TrainEntity;
 import com.spirited.support.component.LoadMoreAdapter;
 
 import java.util.List;
 
 
-public class TrainAdapter extends LoadMoreAdapter<Train> {
+public class TrainAdapter extends LoadMoreAdapter<TrainEntity> {
     private Context context;
 
-    public TrainAdapter(Context context, List<Train> dataList) {
+    public TrainAdapter(Context context, List<TrainEntity> dataList) {
         super(dataList);
         this.context = context;
     }
@@ -37,15 +37,15 @@ public class TrainAdapter extends LoadMoreAdapter<Train> {
     public void handleBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         if (viewHolder instanceof ViewHolder) {
             ViewHolder holder = (ViewHolder) viewHolder;
-            Train entity = dataList.get(position);
+            TrainEntity entity = dataList.get(position);
             ImageLoader.normal(context, entity.carInfo.avatar, R.drawable.default_image_white, holder.ivAvatar);
-            holder.tvPrice.setText(String.valueOf(entity.price));
-            holder.tvStart.setText(entity.startPoint);
-            holder.tvEnd.setText(entity.endPoint);
-            holder.tvStartTime.setText(entity.startTime);
-            holder.tvEndTime.setText(entity.endTime);
-            holder.tvNumber.setText(entity.orderedNumber + "/" + entity.carInfo.approvedLoadNumber);
-            if (entity.orderedNumber < entity.carInfo.approvedLoadNumber) {
+            holder.tvPrice.setText(String.valueOf(entity.train.price));
+            holder.tvStart.setText(entity.train.startPoint);
+            holder.tvEnd.setText(entity.train.endPoint);
+            holder.tvStartTime.setText(entity.train.startTime);
+            holder.tvEndTime.setText(entity.train.endTime);
+            holder.tvNumber.setText(entity.train.orderedNumber + "/" + entity.carInfo.approvedLoadNumber);
+            if (entity.train.orderedNumber < entity.carInfo.approvedLoadNumber) {
                 holder.tvOrder.setText("预约");
                 holder.tvOrder.setEnabled(true);
             } else {
@@ -78,7 +78,7 @@ public class TrainAdapter extends LoadMoreAdapter<Train> {
                     if (position >= 0) {
                         Intent intent = new Intent(context, TrainDetailActivity.class);
                         intent.putExtra("carID", dataList.get(position).carInfo.id);
-                        intent.putExtra("trainID", dataList.get(position).id);
+                        intent.putExtra("trainID", dataList.get(position).train.id);
                         context.startActivity(intent);
                     }
                 }

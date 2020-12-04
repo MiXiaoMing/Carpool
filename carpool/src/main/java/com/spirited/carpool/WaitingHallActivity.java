@@ -7,7 +7,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import com.appframe.utils.logger.Logger;
 import com.spirited.carpool.adapter.TrainAdapter;
@@ -15,6 +14,7 @@ import com.spirited.carpool.api.CustomObserver;
 import com.spirited.carpool.api.PageBody;
 import com.spirited.carpool.api.waitinghall.CarInfo;
 import com.spirited.carpool.api.waitinghall.Train;
+import com.spirited.carpool.api.waitinghall.TrainEntity;
 import com.spirited.carpool.api.waitinghall.TrainListEntity;
 import com.spirited.carpool.api.waitinghall.WaitingHallManager;
 import com.spirited.support.AutoBaseTitleActivity;
@@ -36,7 +36,7 @@ public class WaitingHallActivity extends AutoBaseTitleActivity {
     private TrainAdapter trainAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
 
-    private ArrayList<Train> dataList = new ArrayList<>();
+    private ArrayList<TrainEntity> dataList = new ArrayList<>();
     private int page = 0;
 
     @Override
@@ -66,16 +66,6 @@ public class WaitingHallActivity extends AutoBaseTitleActivity {
                 dataList.clear();
                 page = 0;
                 getData();
-
-                // 延时1s关闭下拉刷新
-//                swipeRefreshLayout.postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        if (swipeRefreshLayout != null && swipeRefreshLayout.isRefreshing()) {
-//                            swipeRefreshLayout.setRefreshing(false);
-//                        }
-//                    }
-//                }, 1000);
             }
         });
 
@@ -111,7 +101,8 @@ public class WaitingHallActivity extends AutoBaseTitleActivity {
 
                         trainAdapter.setLoadState(trainAdapter.LOADING_COMPLETE);
 
-                        ArrayList<Train> trainList = new ArrayList<>();
+                        TrainListEntity trainList = new TrainListEntity();
+                        trainList.data = new ArrayList<>();
 
                         for (int i = 0; i < 10; ++i) {
                             Train train = new Train();
@@ -124,7 +115,6 @@ public class WaitingHallActivity extends AutoBaseTitleActivity {
                             train.endTime = "22:00";
 
                             CarInfo carInfo = new CarInfo();
-                            train.carInfo = carInfo;
                             carInfo.totalOrderedCount = i * 100;
                             carInfo.approvedLoadNumber = i * 30;
                             carInfo.avatar = "http://192.168.1.47/jbh/image/icon_clean_daily.jpg";
@@ -132,11 +122,16 @@ public class WaitingHallActivity extends AutoBaseTitleActivity {
                             carInfo.description = "平安回家";
                             carInfo.id = i * i + "";
                             carInfo.telephone = "13718863263";
+                            carInfo.carNumber = "冀A X753F";
 
-                            trainList.add(train);
+                            TrainEntity entity = new TrainEntity();
+                            entity.carInfo = carInfo;
+                            entity.train = train;
+
+                            trainList.data.add(entity);
                         }
 
-                        dataList.addAll(trainList);
+                        dataList.addAll(trainList.data);
                         trainAdapter.notifyDataSetChanged();
                     }
 
@@ -148,7 +143,7 @@ public class WaitingHallActivity extends AutoBaseTitleActivity {
 
                         trainAdapter.setLoadState(trainAdapter.LOADING_COMPLETE);
 
-                        List<Train> trainList = result.data.trainList;
+                        List<TrainEntity> trainList = result.data;
                         if (trainList == null || trainList.size() == 0) {
                             trainAdapter.setLoadState(trainAdapter.LOADING_END);
                             return;

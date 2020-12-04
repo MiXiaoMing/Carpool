@@ -472,3 +472,10 @@ support/build/outputs/logs/manifest-merger-debug-report.txt
 .idea/modules/support/support.iml
 .gradle/4.6/fileHashes/fileHashes.lock
 .gradle/4.6/fileHashes/resourceHashesCache.bin
+.idea/libraries/Gradle__androidx_annotation_annotation_1_0_0_jar.xml
+.idea/libraries/Gradle__com_github_PhilJay_MPAndroidChart_v3_1_0_aar.xml
+.idea/libraries/Gradle__com_umeng_umsdk_analytics_8_0_0_jar.xml
+.idea/libraries/Gradle__com_youth_banner_banner_1_4_10_aar.xml
+.idea/libraries/Gradle__com_zhy_autolayout_1_4_5_aar.xml
+support/build/generated/not_namespaced_r_class_sources/debug/generateDebugRFile/out/com/github/mikephil/charting/R.java
+support/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/github/mikephil/charting/R.class

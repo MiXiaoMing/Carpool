@@ -2,11 +2,12 @@ package com.spirited.carpool.api.waitinghall;
 
 import com.spirited.support.common.BaseArrayResult;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * 车次 列表
+ * 车辆 实体
  */
-public class TrainListEntity extends BaseArrayResult<TrainEntity> {
-    
+public class CarStatisticsDataEntity extends BaseArrayResult<TrainStatistics> {
+
 }
