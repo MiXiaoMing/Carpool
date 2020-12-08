@@ -1,4 +1,4 @@
-package com.spirited.carpool;
+package com.spirited.carpool.waitinghall;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -17,6 +17,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.spirited.carpool.R;
 import com.spirited.carpool.api.CustomObserver;
 import com.spirited.carpool.api.waitinghall.CarInfo;
 import com.spirited.carpool.api.waitinghall.CarStatisticsDataEntity;

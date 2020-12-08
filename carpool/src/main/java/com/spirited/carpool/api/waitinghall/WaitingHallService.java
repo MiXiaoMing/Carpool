@@ -12,6 +12,9 @@ import retrofit2.http.POST;
  */
 public interface WaitingHallService {
 
+    @POST("carousel/getCarouselList")
+    Observable<CarouselListEntity> getCarouselList();
+
     @POST("waitingHall/getTrainList")
     Observable<TrainListEntity> getTrainList(@Body PageBody body);
 

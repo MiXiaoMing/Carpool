@@ -21,16 +21,16 @@
         </activity>
 
         <!--   登陆页面     -->
-        <activity android:name=".LoginActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".mine.LoginActivity" android:screenOrientation="portrait"/>
 
         <!--   路线设置     -->
-        <activity android:name=".RouteSettingActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".train.RouteSettingActivity" android:screenOrientation="portrait"/>
         <!--   路线导航     -->
-        <activity android:name=".NavigationActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".train.NavigationActivity" android:screenOrientation="portrait"/>
         <!--   路线导航     -->
-        <activity android:name=".WaitingHallActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".waitinghall.WaitingHallFragment" android:screenOrientation="portrait"/>
         <!--   车次详情     -->
-        <activity android:name=".TrainDetailActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".waitinghall.TrainDetailActivity" android:screenOrientation="portrait"/>
 
 
         <!--自动适配-->

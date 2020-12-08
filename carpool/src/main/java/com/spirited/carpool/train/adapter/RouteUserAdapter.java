@@ -1,4 +1,4 @@
-package com.spirited.carpool.adapter;
+package com.spirited.carpool.train.adapter;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.appframe.library.component.image.ImageLoader;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.utils.DistanceUtil;
-import com.spirited.carpool.NavigationActivity;
+import com.spirited.carpool.train.NavigationActivity;
 import com.spirited.carpool.R;
 import com.spirited.carpool.api.route.Route;
 import com.spirited.carpool.api.route.UserInfo;

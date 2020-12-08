@@ -1,8 +1,9 @@
-package com.spirited.carpool;
+package com.spirited.carpool.mine;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.spirited.carpool.R;
 import com.spirited.support.AutoBaseTitleActivity;
 
 public class LoginActivity extends AutoBaseTitleActivity {

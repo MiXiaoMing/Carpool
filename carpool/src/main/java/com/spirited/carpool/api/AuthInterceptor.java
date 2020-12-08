@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 
 import com.appframe.utils.app.AppRuntimeUtil;
 import com.appframe.utils.logger.Logger;
-import com.spirited.carpool.LoginActivity;
+import com.spirited.carpool.mine.LoginActivity;
 import com.spirited.support.utils.AuthUtil;
 
 import java.io.IOException;

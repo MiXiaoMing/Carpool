@@ -1,4 +1,4 @@
-package com.spirited.carpool.adapter;
+package com.spirited.carpool.waitinghall.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.appframe.library.component.image.ImageLoader;
 import com.spirited.carpool.R;
-import com.spirited.carpool.TrainDetailActivity;
+import com.spirited.carpool.waitinghall.TrainDetailActivity;
 import com.spirited.carpool.api.waitinghall.TrainEntity;
 import com.spirited.support.component.LoadMoreAdapter;
 

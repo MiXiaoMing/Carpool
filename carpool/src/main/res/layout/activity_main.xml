@@ -1,36 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="@color/white">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/llyBottom"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="首页"/>
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="5px"
+        android:paddingLeft="5px"
+        android:paddingRight="5px"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="跳转登陆页面"/>
+        <LinearLayout
+            android:id="@+id/llyWaitingHall"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginTop="3px"
+            android:gravity="center">
 
-    <Button
-        android:id="@+id/btnRoute"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="路线规划"/>
+            <ImageView
+                android:id="@+id/ivWaitingHall"
+                android:layout_width="20px"
+                android:layout_height="20px"
+                android:src="@drawable/icon_waiting_hall_click"/>
 
-    <Button
-        android:id="@+id/btnNavigation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="路线导航"/>
+            <com.spirited.support.component.FontTextView
+                android:id="@+id/tvWaitingHall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="候车厅"
+                android:textSize="14px"
+                android:textColor="@color/blue_text"/>
 
-    <Button
-        android:id="@+id/btnWaitingHall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="候车大厅"/>
+        </LinearLayout>
 
-</LinearLayout>
+        <LinearLayout
+            android:id="@+id/llyTrain"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginTop="3px"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/ivTrain"
+                android:layout_width="20px"
+                android:layout_height="20px"
+                android:src="@drawable/icon_train_time_table"/>
+
+            <com.spirited.support.component.FontTextView
+                android:id="@+id/tvTrain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="车次"
+                android:textSize="14px"
+                android:textColor="@color/gray_text"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llyMine"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginTop="3px"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/ivMine"
+                android:layout_width="20px"
+                android:layout_height="20px"
+                android:src="@drawable/icon_mine"/>
+
+            <com.spirited.support.component.FontTextView
+                android:id="@+id/tvMine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的"
+                android:textSize="14px"
+                android:textColor="@color/gray_text"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/flyContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/llyBottom"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/gray"
+        android:layout_above="@+id/llyBottom"
+        android:shadowColor="#FF4141"
+        android:shadowRadius="10"
+        android:shadowDx="3"
+        android:shadowDy="0"/>
+
+</RelativeLayout>

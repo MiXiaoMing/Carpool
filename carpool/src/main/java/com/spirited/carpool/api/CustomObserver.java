@@ -7,7 +7,7 @@ import com.appframe.library.component.notify.AFToast;
 import com.appframe.utils.NetUtil;
 import com.appframe.utils.app.ActivityUtil;
 import com.appframe.utils.app.AppRuntimeUtil;
-import com.spirited.carpool.LoginActivity;
+import com.spirited.carpool.mine.LoginActivity;
 import com.spirited.carpool.R;
 import com.spirited.support.common.Result;
 import com.spirited.support.utils.AuthUtil;

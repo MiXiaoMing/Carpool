@@ -10,13 +10,13 @@ import com.spirited.support.common.UserInfo;
  */
 
 public class UserInfoUtil {
-    private static String storeName = "QX-User";
+    private static String storeName = "-User";
 
     private static String key_userID = "id";
     private static String key_userName = "userName";
     private static String key_userType = "userType";
     private static String key_cellphone = "cellphone";
-    private static String key_balance = "balance";
+    private static String key_car_total_count = "carTotalCount";
     private static String key_region = "region";
 
     public static void setUserID(String id) {
@@ -51,12 +51,12 @@ public class UserInfoUtil {
         return SharePreferences.getString(key_cellphone);
     }
 
-    public static void setBalance(float balance) {
-        SharePreferences.putFloat(key_balance, balance);
+    public static void setCarTotalCount(float balance) {
+        SharePreferences.putFloat(key_car_total_count, balance);
     }
 
-    public static float getBalance() {
-        float balance = SharePreferences.getFloat(key_balance);
+    public static float getCarTotalCount() {
+        float balance = SharePreferences.getFloat(key_car_total_count);
         if (balance == 1.0) {
             return 0;
         }
@@ -78,7 +78,7 @@ public class UserInfoUtil {
             UserInfoUtil.setUserName(userInfo.name);
             UserInfoUtil.setUserType(userInfo.type);
             UserInfoUtil.setCellphone(userInfo.phoneNumber);
-            UserInfoUtil.setBalance(userInfo.balance);
+            UserInfoUtil.setCarTotalCount(userInfo.balance);
             UserInfoUtil.setRegion(userInfo.region);
         }
     }
@@ -88,7 +88,7 @@ public class UserInfoUtil {
         UserInfoUtil.setUserName("");
         UserInfoUtil.setUserType("");
         UserInfoUtil.setCellphone("");
-        UserInfoUtil.setBalance(0);
+        UserInfoUtil.setCarTotalCount(0);
         UserInfoUtil.setRegion("");
     }
 

@@ -1,4 +1,4 @@
-package com.spirited.carpool;
+package com.spirited.carpool.train;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -33,7 +33,7 @@ import com.baidu.mapapi.search.route.WalkingRouteResult;
 import com.baidu.mapapi.utils.DistanceUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.spirited.carpool.adapter.RouteUserAdapter;
+import com.spirited.carpool.R;
 import com.spirited.carpool.api.CustomObserver;
 import com.spirited.carpool.api.route.Route;
 import com.spirited.carpool.api.route.RouteDataManager;
@@ -41,10 +41,10 @@ import com.spirited.carpool.api.route.RouteListEntity;
 import com.spirited.carpool.api.route.UserInfo;
 import com.spirited.carpool.constants.BaiduMapConfig;
 import com.spirited.carpool.overlay.DrivingRouteOverlay;
+import com.spirited.carpool.train.adapter.RouteUserAdapter;
 import com.spirited.support.AutoBaseTitleActivity;
 import com.spirited.support.constants.RouteConstants;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

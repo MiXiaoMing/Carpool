@@ -1,4 +1,4 @@
-package com.spirited.carpool;
+package com.spirited.carpool.train;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -19,6 +19,8 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDNotifyListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
+import com.spirited.carpool.R;
+import com.spirited.carpool.mine.LoginActivity;
 import com.spirited.support.AutoBaseTitleActivity;
 
 import java.util.List;
@@ -45,7 +47,7 @@ public class LocationActivity extends AutoBaseTitleActivity {
     }
 
     private void initView() {
-        findViewById(R.id.btnLogin).setOnClickListener(clickListener);
+//        findViewById(R.id.btnLogin).setOnClickListener(clickListener);
     }
 
     /**
@@ -133,9 +135,9 @@ public class LocationActivity extends AutoBaseTitleActivity {
         public void onClick(View view) {
             int id = view.getId();
 
-            if (id == R.id.btnLogin) {
-                startActivity(new Intent(LocationActivity.this, LoginActivity.class));
-            }
+//            if (id == R.id.btnLogin) {
+//                startActivity(new Intent(LocationActivity.this, LoginActivity.class));
+//            }
         }
     };
 

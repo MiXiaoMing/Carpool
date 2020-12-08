@@ -1,4 +1,4 @@
-package com.spirited.carpool;
+package com.spirited.carpool.waitinghall;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -7,31 +7,46 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.appframe.utils.logger.Logger;
-import com.spirited.carpool.adapter.TrainAdapter;
+import com.spirited.carpool.R;
 import com.spirited.carpool.api.CustomObserver;
 import com.spirited.carpool.api.PageBody;
+import com.spirited.carpool.api.ServerConfig;
 import com.spirited.carpool.api.waitinghall.CarInfo;
+import com.spirited.carpool.api.waitinghall.Carousel;
+import com.spirited.carpool.api.waitinghall.CarouselListEntity;
 import com.spirited.carpool.api.waitinghall.Train;
 import com.spirited.carpool.api.waitinghall.TrainEntity;
 import com.spirited.carpool.api.waitinghall.TrainListEntity;
 import com.spirited.carpool.api.waitinghall.WaitingHallManager;
-import com.spirited.support.AutoBaseTitleActivity;
+import com.spirited.carpool.waitinghall.adapter.TrainAdapter;
+import com.spirited.support.BaseFragment;
 import com.spirited.support.component.RecyclerViewItemDecoration;
 import com.spirited.support.component.RecyclerViewScrollListener;
+import com.spirited.support.constants.Constants;
+import com.spirited.support.utils.GlideImageLoader;
+import com.spirited.support.utils.ReportUtil;
+import com.youth.banner.Banner;
+import com.youth.banner.listener.OnBannerListener;
 import com.zhy.autolayout.utils.AutoUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
  * 候车大厅
  */
-public class WaitingHallActivity extends AutoBaseTitleActivity {
+public class WaitingHallFragment extends BaseFragment {
+    private View view;
 
     private TrainAdapter trainAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -39,25 +54,33 @@ public class WaitingHallActivity extends AutoBaseTitleActivity {
     private ArrayList<TrainEntity> dataList = new ArrayList<>();
     private int page = 0;
 
+    @Nullable
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if (view == null) {
+            view = inflater.inflate(R.layout.fragment_waiting_hall, null);
 
-        setContentView(R.layout.activity_waiting_hall);
+            initView();
+            initCarousel();
+        }
+        ViewGroup parent = (ViewGroup) view.getParent();
+        if (parent != null) {
+            parent.removeView(view);
+        }
 
-        initView();
+        return view;
     }
 
     private void initView() {
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        RecyclerViewItemDecoration itemDecoration = new RecyclerViewItemDecoration(this, AutoUtils.getPercentWidthSize(15));
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        RecyclerViewItemDecoration itemDecoration = new RecyclerViewItemDecoration(this.getContext(), AutoUtils.getPercentWidthSize(15));
         recyclerView.addItemDecoration(itemDecoration);
         ((DefaultItemAnimator) recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
-        trainAdapter = new TrainAdapter(this, dataList);
+        trainAdapter = new TrainAdapter(this.getContext(), dataList);
         recyclerView.setAdapter(trainAdapter);
 
-        swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
+        swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout);
         swipeRefreshLayout.setColorSchemeColors(Color.parseColor("#4DB6AC"));
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -65,7 +88,7 @@ public class WaitingHallActivity extends AutoBaseTitleActivity {
                 // 刷新数据
                 dataList.clear();
                 page = 0;
-                getData();
+                getTrainList();
             }
         });
 
@@ -75,14 +98,74 @@ public class WaitingHallActivity extends AutoBaseTitleActivity {
             public void onScrollToBottom() {
                 trainAdapter.setLoadState(trainAdapter.LOADING);
                 ++page;
-                getData();
+                getTrainList();
             }
         });
 
-        getData();
+        getTrainList();
     }
 
-    private void getData() {
+    //轮播图
+    private void initCarouselView(ArrayList<Carousel> carousels) {
+        if (carousels == null || carousels.size() == 0) {
+            Logger.getLogger().e("没有获取到轮播图数据");
+            carousels = new ArrayList<>();
+            carousels.add(new Carousel("image/carousel_default.jpg", Constants.carousel_url, "http://www.baidu.com"));
+        }
+
+        final List<String> images = new ArrayList<>();
+        for (int i = 0; i < carousels.size(); i++) {
+            images.add(ServerConfig.file_host + carousels.get(i).path);
+        }
+
+        Banner banner = view.findViewById(R.id.banner);
+        final ArrayList<Carousel> finalCarousels = carousels;
+        banner.setDelayTime(5000).setImages(images).setImageLoader(new GlideImageLoader()).setOnBannerListener(new OnBannerListener() {
+            @Override
+            public void OnBannerClick(int position) {
+                Carousel carousel = finalCarousels.get(position);
+                if (carousel.type.equals(Constants.carousel_url)) {
+                    // TODO: 2020/12/8 跳转网页地址
+                } else {
+                    // TODO: 2020/12/8 跳转原生页面
+                }
+            }
+        }).start();
+    }
+
+
+    private void initCarousel() {
+        new WaitingHallManager().getCarouselList()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new CustomObserver<CarouselListEntity>() {
+
+                    @Override
+                    public void onError(String message) {
+                        ReportUtil.reportError(message);
+                        Logger.getLogger().e("获取轮播图错误：" + message);
+
+                        // TODO: 2020/12/8
+                        initCarouselView(null);
+                    }
+
+                    @Override
+                    public void onSuccess(CarouselListEntity result) {
+                        if (!result.success) {
+                            Logger.getLogger().e("获取轮播图错误，msgCode：" + result.errCode + "/n" + result.message);
+                        } else {
+                            if (result.data == null) {
+                                Logger.getLogger().e("获取轮播图错误, result为空");
+                                return;
+                            }
+
+                            initCarouselView(result.data);
+                        }
+                    }
+                });
+    }
+
+    private void getTrainList() {
         Logger.getLogger().d("获取候车大厅 -- 车次列表");
         PageBody body = new PageBody();
         body.page = page;

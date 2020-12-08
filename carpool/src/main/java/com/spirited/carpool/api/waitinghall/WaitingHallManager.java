@@ -17,6 +17,12 @@ public class WaitingHallManager {
         service = MobileServerRetrofit.getInstance().getRetrofit().create(WaitingHallService.class);
     }
 
+    /**********  轮播图  **********/
+
+    public Observable<CarouselListEntity> getCarouselList() {
+        return service.getCarouselList();
+    }
+
     /**********  车次  **********/
 
     public Observable<TrainListEntity> getTrainList(PageBody body) {
