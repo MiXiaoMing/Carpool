@@ -1,4 +1,4 @@
-package com.spirited.carpool.api.route;
+package com.spirited.carpool.api.train;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -13,6 +13,4 @@ public class Route implements Serializable {
     public double latitude = 0D, longitude = 0D;
     public String description;
     public String time = new SimpleDateFormat("HH:mm").format(new Date());
-
-    public ArrayList<UserInfo> userInfoList = new ArrayList<>();
 }

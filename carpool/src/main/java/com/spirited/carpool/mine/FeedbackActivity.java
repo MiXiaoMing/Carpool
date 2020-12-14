@@ -19,6 +19,9 @@ import com.spirited.support.component.TypefaceHelper;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * 提交反馈
+ */
 public class FeedbackActivity extends AutoBaseTitleActivity {
 
     private EditText etRemind;

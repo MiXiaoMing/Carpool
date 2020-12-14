@@ -38,7 +38,7 @@ import com.baidu.mapapi.search.sug.SuggestionSearchOption;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.spirited.carpool.R;
-import com.spirited.carpool.api.route.Route;
+import com.spirited.carpool.api.train.Route;
 import com.spirited.carpool.constants.BaiduMapConfig;
 import com.spirited.carpool.overlay.DrivingRouteOverlay;
 import com.spirited.support.AutoBaseTitleActivity;

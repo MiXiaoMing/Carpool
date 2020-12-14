@@ -29,7 +29,7 @@ public class WaitingHallManager {
         return service.getTrainList(body);
     }
 
-    public Observable<TrainInfoEntity> getTrainInfo(TrainInfoBody body) {
+    public Observable<TrainEntity> getTrainInfo(TrainInfoBody body) {
         return service.getTrainInfo(body);
     }
 

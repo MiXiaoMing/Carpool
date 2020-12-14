@@ -1,4 +1,4 @@
-package com.spirited.carpool.dialog;
+package com.spirited.carpool.train.dialog;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.spirited.carpool.R;
-import com.spirited.carpool.api.route.Route;
+import com.spirited.carpool.api.train.Route;
 import com.spirited.support.common.Callback;
 import com.spirited.support.component.BaseDialog;
 import com.spirited.support.constants.RouteConstants;

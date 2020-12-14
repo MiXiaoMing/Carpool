@@ -1,5 +1,6 @@
 package com.spirited.carpool.train;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,9 +11,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.appframe.utils.logger.Logger;
 import com.spirited.carpool.R;
+import com.spirited.carpool.train.adapter.TrainDepartureAdapter;
 import com.spirited.carpool.waitinghall.adapter.TrainAdapter;
 import com.spirited.carpool.api.CustomObserver;
 import com.spirited.carpool.api.PageBody;
@@ -38,7 +41,7 @@ import io.reactivex.schedulers.Schedulers;
 public class TrainFragment extends BaseFragment {
     private View view;
 
-    private TrainAdapter trainAdapter;
+    private TrainDepartureAdapter trainAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
 
     private ArrayList<TrainEntity> dataList = new ArrayList<>();
@@ -48,7 +51,7 @@ public class TrainFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (view == null) {
-            view = inflater.inflate(R.layout.fragment_waiting_hall, null);
+            view = inflater.inflate(R.layout.fragment_train, null);
 
             initView();
         }
@@ -61,12 +64,15 @@ public class TrainFragment extends BaseFragment {
     }
 
     private void initView() {
+        RelativeLayout rlyAdd = view.findViewById(R.id.rlyAdd);
+        rlyAdd.setOnClickListener(clickListener);
+
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         RecyclerViewItemDecoration itemDecoration = new RecyclerViewItemDecoration(this.getContext(), AutoUtils.getPercentWidthSize(15));
         recyclerView.addItemDecoration(itemDecoration);
         ((DefaultItemAnimator) recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
-        trainAdapter = new TrainAdapter(this.getContext(), dataList);
+        trainAdapter = new TrainDepartureAdapter(this.getContext(), dataList);
         recyclerView.setAdapter(trainAdapter);
 
         swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout);
@@ -94,8 +100,22 @@ public class TrainFragment extends BaseFragment {
         getData();
     }
 
+    private View.OnClickListener clickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            int id = view.getId();
+            switch (id) {
+                case R.id.rlyAdd:
+                    Intent intent = new Intent(TrainFragment.this.getContext(), TrainSettingActivity.class);
+                    intent.putExtra("type", "U");
+                    TrainFragment.this.getContext().startActivity(intent);
+                    break;
+            }
+        }
+    };
+
     private void getData() {
-        Logger.getLogger().d("获取候车大厅 -- 车次列表");
+        Logger.getLogger().d("获取车次列表");
         PageBody body = new PageBody();
         body.page = page;
         body.number = 10;
@@ -121,10 +141,7 @@ public class TrainFragment extends BaseFragment {
                             train.id = "123";
                             train.price = i * 20;
                             train.orderedNumber = i;
-                            train.startPoint = "北京沙河市";
-                            train.endPoint = "保定易县";
                             train.startTime = "20:00";
-                            train.endTime = "22:00";
 
                             CarInfo carInfo = new CarInfo();
                             carInfo.totalOrderedCount = i * 100;

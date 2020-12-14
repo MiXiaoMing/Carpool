@@ -19,14 +19,17 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.spirited.carpool.R;
 import com.spirited.carpool.api.CustomObserver;
+import com.spirited.carpool.api.train.Route;
 import com.spirited.carpool.api.waitinghall.CarInfo;
 import com.spirited.carpool.api.waitinghall.CarStatisticsDataEntity;
 import com.spirited.carpool.api.waitinghall.Train;
+import com.spirited.carpool.api.waitinghall.TrainEntity;
 import com.spirited.carpool.api.waitinghall.TrainInfoBody;
-import com.spirited.carpool.api.waitinghall.TrainInfoEntity;
 import com.spirited.carpool.api.waitinghall.TrainStatistics;
 import com.spirited.carpool.api.waitinghall.WaitingHallManager;
 import com.spirited.support.AutoBaseTitleActivity;
+import com.spirited.support.constants.RouteConstants;
+import com.spirited.support.utils.TimeUtils;
 
 import java.util.ArrayList;
 
@@ -54,7 +57,7 @@ public class TrainDetailActivity extends AutoBaseTitleActivity {
         llyBack.setOnClickListener(clickListener);
     }
 
-    private void updateView(TrainInfoEntity entity) {
+    private void updateView(TrainEntity entity) {
         TextView tvContact = findViewById(R.id.tvContact);
         TextView tvCarNumber = findViewById(R.id.tvCarNumber);
         TextView tvApprovedLoadNumber = findViewById(R.id.tvApprovedLoadNumber);
@@ -74,10 +77,16 @@ public class TrainDetailActivity extends AutoBaseTitleActivity {
         ImageLoader.normal(this, entity.carInfo.avatar, R.drawable.default_image_white, ivAvatar);
         tvTotalOrderedCount.setText("已安全营运 " + entity.carInfo.totalOrderedCount + " 车次");
         tvOrderedNumber.setText(entity.train.orderedNumber + "/" + entity.carInfo.approvedLoadNumber);
-        tvStart.setText(entity.train.startPoint);
-        tvEnd.setText(entity.train.endPoint);
+        for (int i = 0; i < entity.routeEntities.size(); ++i) {
+            Route route = entity.routeEntities.get(i).route;
+            if (route.type.equals(RouteConstants.route_type_start)) {
+                tvStart.setText(route.description);
+            } else if (route.type.equals(RouteConstants.route_type_end)) {
+                tvEnd.setText(route.description);
+            }
+        }
         tvStartTime.setText(entity.train.startTime);
-        tvEndTime.setText(entity.train.endTime);
+        tvEndTime.setText(TimeUtils.addTime(entity.train.startTime, entity.train.occupiedTime));
         tvPrice.setText("票价：" + entity.train.price + "元");
         tvOrder.setVisibility(View.VISIBLE);
         tvOrder.setOnClickListener(clickListener);
@@ -175,7 +184,7 @@ public class TrainDetailActivity extends AutoBaseTitleActivity {
         new WaitingHallManager().getTrainInfo(body)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new CustomObserver<TrainInfoEntity>() {
+                .subscribe(new CustomObserver<TrainEntity>() {
 
                     @Override
                     public void onError(String message) {
@@ -183,10 +192,8 @@ public class TrainDetailActivity extends AutoBaseTitleActivity {
                         train.id = "123";
                         train.price = 20;
                         train.orderedNumber = 3;
-                        train.startPoint = "北京沙河市";
-                        train.endPoint = "保定易县";
                         train.startTime = "20:00";
-                        train.endTime = "22:00";
+                        train.occupiedTime = 100;
 
                         CarInfo carInfo = new CarInfo();
                         carInfo.totalOrderedCount = 100;
@@ -198,7 +205,7 @@ public class TrainDetailActivity extends AutoBaseTitleActivity {
                         carInfo.telephone = "13718863263";
                         carInfo.carNumber = "冀A X753F";
 
-                        TrainInfoEntity trainInfoEntity = new TrainInfoEntity();
+                        TrainEntity trainInfoEntity = new TrainEntity();
                         trainInfoEntity.train = train;
                         trainInfoEntity.carInfo = carInfo;
 
@@ -206,7 +213,7 @@ public class TrainDetailActivity extends AutoBaseTitleActivity {
                     }
 
                     @Override
-                    public void onSuccess(TrainInfoEntity result) {
+                    public void onSuccess(TrainEntity result) {
                         updateView(result);
                     }
                 });

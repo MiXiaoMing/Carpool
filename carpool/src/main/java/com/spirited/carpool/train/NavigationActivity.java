@@ -35,10 +35,11 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.spirited.carpool.R;
 import com.spirited.carpool.api.CustomObserver;
-import com.spirited.carpool.api.route.Route;
-import com.spirited.carpool.api.route.RouteDataManager;
-import com.spirited.carpool.api.route.RouteListEntity;
-import com.spirited.carpool.api.route.UserInfo;
+import com.spirited.carpool.api.train.Route;
+import com.spirited.carpool.api.train.RouteDataManager;
+import com.spirited.carpool.api.train.RouteEntity;
+import com.spirited.carpool.api.train.RouteListEntity;
+import com.spirited.carpool.api.train.UserInfo;
 import com.spirited.carpool.constants.BaiduMapConfig;
 import com.spirited.carpool.overlay.DrivingRouteOverlay;
 import com.spirited.carpool.train.adapter.RouteUserAdapter;
@@ -72,7 +73,7 @@ public class NavigationActivity extends AutoBaseTitleActivity {
     private LinearLayout llyMultiple;
     private RouteUserAdapter userAdapter;
 
-    private ArrayList<Route> routeList = new ArrayList<>();
+    private ArrayList<RouteEntity> routeEntities = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -146,10 +147,10 @@ public class NavigationActivity extends AutoBaseTitleActivity {
     private void initData() {
         String json = SharePreferences.getStringWithDefault("route", null);
         if (!TextUtils.isEmpty(json)) {
-            ArrayList<Route> routes = new Gson().fromJson(json, new TypeToken<ArrayList<Route>>() {
+            ArrayList<RouteEntity> routes = new Gson().fromJson(json, new TypeToken<ArrayList<RouteEntity>>() {
             }.getType());
             if (routes != null && routes.size() > 0) {
-                routeList = routes;
+                routeEntities = routes;
                 showRoutePath();
             }
         }
@@ -211,11 +212,11 @@ public class NavigationActivity extends AutoBaseTitleActivity {
     /**
      * 展示 多人 信息框
      */
-    private void showMultipleInfoDialog(Route route) {
+    private void showMultipleInfoDialog(RouteEntity routeEntity) {
         llyOne.setVisibility(View.GONE);
 
         llyMultiple.setVisibility(View.VISIBLE);
-        userAdapter.addAll(route);
+        userAdapter.addAll(routeEntity);
     }
 
     /**
@@ -224,16 +225,16 @@ public class NavigationActivity extends AutoBaseTitleActivity {
     private void showRoutePath() {
         PlanNode startRoute = null, endRoute = null;
         List<PlanNode> passList = new ArrayList<>();
-        for (int i = 0; i < routeList.size(); ++i) {
-            Route route = routeList.get(i);
-            if (route.type.equals(RouteConstants.route_type_start)) {
-                startRoute = PlanNode.withLocation(new LatLng(route.latitude, route.longitude));
-            } else if (route.type.equals(RouteConstants.route_type_wait)) {
-                passList.add(PlanNode.withLocation(new LatLng(route.latitude, route.longitude)));
-            } else if (route.type.equals(RouteConstants.route_type_route)) {
-                passList.add(PlanNode.withLocation(new LatLng(route.latitude, route.longitude)));
-            } else if (route.type.equals(RouteConstants.route_type_end)) {
-                endRoute = PlanNode.withLocation(new LatLng(route.latitude, route.longitude));
+        for (int i = 0; i < routeEntities.size(); ++i) {
+            RouteEntity routeEntity = routeEntities.get(i);
+            if (routeEntity.route.type.equals(RouteConstants.route_type_start)) {
+                startRoute = PlanNode.withLocation(new LatLng(routeEntity.route.latitude, routeEntity.route.longitude));
+            } else if (routeEntity.route.type.equals(RouteConstants.route_type_wait)) {
+                passList.add(PlanNode.withLocation(new LatLng(routeEntity.route.latitude, routeEntity.route.longitude)));
+            } else if (routeEntity.route.type.equals(RouteConstants.route_type_route)) {
+                passList.add(PlanNode.withLocation(new LatLng(routeEntity.route.latitude, routeEntity.route.longitude)));
+            } else if (routeEntity.route.type.equals(RouteConstants.route_type_end)) {
+                endRoute = PlanNode.withLocation(new LatLng(routeEntity.route.latitude, routeEntity.route.longitude));
             }
         }
 
@@ -256,45 +257,45 @@ public class NavigationActivity extends AutoBaseTitleActivity {
     private void showOverlays() {
         baiduMap.clear();
 
-        for (int i = 0; i < routeList.size(); ++i) {
-            if (!routeList.get(i).type.equals(RouteConstants.route_type_wait)) {
+        for (int i = 0; i < routeEntities.size(); ++i) {
+            if (!routeEntities.get(i).route.type.equals(RouteConstants.route_type_wait)) {
                 continue;
             }
 
 
-            for (int j = 0; j < routeList.get(i).userInfoList.size(); ++j) {
-                double distance = DistanceUtil.getDistance(new LatLng(routeList.get(i).latitude, routeList.get(i).longitude),
-                        new LatLng(routeList.get(i).userInfoList.get(j).latitude, routeList.get(i).userInfoList.get(j).longitude));
+            for (int j = 0; j < routeEntities.get(i).userInfoList.size(); ++j) {
+                double distance = DistanceUtil.getDistance(new LatLng(routeEntities.get(i).route.latitude, routeEntities.get(i).route.longitude),
+                        new LatLng(routeEntities.get(i).userInfoList.get(j).latitude, routeEntities.get(i).userInfoList.get(j).longitude));
                 Logger.getLogger().d("两点之间距离：" + distance);
                 if (distance < RouteConstants.distance_arrived) {
                 } else {
-                    BaiduMapConfig.addOverlay(baiduMap, routeList.get(i).userInfoList.get(j).latitude, routeList.get(i).userInfoList.get(j).longitude, R.drawable.icon_route2);
+                    BaiduMapConfig.addOverlay(baiduMap, routeEntities.get(i).userInfoList.get(j).latitude, routeEntities.get(i).userInfoList.get(j).longitude, R.drawable.icon_route2);
                 }
             }
 
-            int count = routeList.get(i).userInfoList.size();
+            int count = routeEntities.get(i).userInfoList.size();
             if (count == 0) {
-                BaiduMapConfig.addOverlay(baiduMap, routeList.get(i).latitude, routeList.get(i).longitude, R.drawable.icon_route2);
+                BaiduMapConfig.addOverlay(baiduMap, routeEntities.get(i).route.latitude, routeEntities.get(i).route.longitude, R.drawable.icon_route2);
             } else if (count == 1) {
-                BaiduMapConfig.addOverlay(baiduMap, routeList.get(i).latitude, routeList.get(i).longitude, R.drawable.icon_mark1);
+                BaiduMapConfig.addOverlay(baiduMap, routeEntities.get(i).route.latitude, routeEntities.get(i).route.longitude, R.drawable.icon_mark1);
             } else if (count == 2) {
-                BaiduMapConfig.addOverlay(baiduMap, routeList.get(i).latitude, routeList.get(i).longitude, R.drawable.icon_mark2);
+                BaiduMapConfig.addOverlay(baiduMap, routeEntities.get(i).route.latitude, routeEntities.get(i).route.longitude, R.drawable.icon_mark2);
             } else if (count == 3) {
-                BaiduMapConfig.addOverlay(baiduMap, routeList.get(i).latitude, routeList.get(i).longitude, R.drawable.icon_mark3);
+                BaiduMapConfig.addOverlay(baiduMap, routeEntities.get(i).route.latitude, routeEntities.get(i).route.longitude, R.drawable.icon_mark3);
             } else if (count == 4) {
-                BaiduMapConfig.addOverlay(baiduMap, routeList.get(i).latitude, routeList.get(i).longitude, R.drawable.icon_mark4);
+                BaiduMapConfig.addOverlay(baiduMap, routeEntities.get(i).route.latitude, routeEntities.get(i).route.longitude, R.drawable.icon_mark4);
             } else if (count == 5) {
-                BaiduMapConfig.addOverlay(baiduMap, routeList.get(i).latitude, routeList.get(i).longitude, R.drawable.icon_mark5);
+                BaiduMapConfig.addOverlay(baiduMap, routeEntities.get(i).route.latitude, routeEntities.get(i).route.longitude, R.drawable.icon_mark5);
             } else if (count == 6) {
-                BaiduMapConfig.addOverlay(baiduMap, routeList.get(i).latitude, routeList.get(i).longitude, R.drawable.icon_mark6);
+                BaiduMapConfig.addOverlay(baiduMap, routeEntities.get(i).route.latitude, routeEntities.get(i).route.longitude, R.drawable.icon_mark6);
             } else if (count == 7) {
-                BaiduMapConfig.addOverlay(baiduMap, routeList.get(i).latitude, routeList.get(i).longitude, R.drawable.icon_mark7);
+                BaiduMapConfig.addOverlay(baiduMap, routeEntities.get(i).route.latitude, routeEntities.get(i).route.longitude, R.drawable.icon_mark7);
             } else if (count == 8) {
-                BaiduMapConfig.addOverlay(baiduMap, routeList.get(i).latitude, routeList.get(i).longitude, R.drawable.icon_mark8);
+                BaiduMapConfig.addOverlay(baiduMap, routeEntities.get(i).route.latitude, routeEntities.get(i).route.longitude, R.drawable.icon_mark8);
             } else if (count == 9) {
-                BaiduMapConfig.addOverlay(baiduMap, routeList.get(i).latitude, routeList.get(i).longitude, R.drawable.icon_mark9);
+                BaiduMapConfig.addOverlay(baiduMap, routeEntities.get(i).route.latitude, routeEntities.get(i).route.longitude, R.drawable.icon_mark9);
             } else {
-                BaiduMapConfig.addOverlay(baiduMap, routeList.get(i).latitude, routeList.get(i).longitude, R.drawable.icon_mark10);
+                BaiduMapConfig.addOverlay(baiduMap, routeEntities.get(i).route.latitude, routeEntities.get(i).route.longitude, R.drawable.icon_mark10);
             }
         }
     }
@@ -332,23 +333,23 @@ public class NavigationActivity extends AutoBaseTitleActivity {
         @Override
         public boolean onMarkerClick(Marker marker) {
             // 路径 标记
-            for (int i = 0; i < routeList.size(); ++i) {
-                if (routeList.get(i).latitude == marker.getPosition().latitude &&
-                        routeList.get(i).longitude == marker.getPosition().longitude) {
-                    Route route = routeList.get(i);
+            for (int i = 0; i < routeEntities.size(); ++i) {
+                if (routeEntities.get(i).route.latitude == marker.getPosition().latitude &&
+                        routeEntities.get(i).route.longitude == marker.getPosition().longitude) {
+                    RouteEntity routeEntity = routeEntities.get(i);
 
-                    if (route.userInfoList.size() == 1) {
-                        showSingleInfoDialog(route.userInfoList.get(0));
+                    if (routeEntity.userInfoList.size() == 1) {
+                        showSingleInfoDialog(routeEntity.userInfoList.get(0));
                         return true;
-                    } else if (route.userInfoList.size() > 1) {
-                        showMultipleInfoDialog(routeList.get(i));
+                    } else if (routeEntity.userInfoList.size() > 1) {
+                        showMultipleInfoDialog(routeEntities.get(i));
                         return true;
                     }
                 } else {
-                    for (int j = 0; j < routeList.get(i).userInfoList.size(); ++j) {
-                        if (routeList.get(i).userInfoList.get(j).latitude == marker.getPosition().latitude
-                                && routeList.get(i).userInfoList.get(j).longitude == marker.getPosition().longitude) {
-                            showSingleInfoDialog(routeList.get(i).userInfoList.get(j));
+                    for (int j = 0; j < routeEntities.get(i).userInfoList.size(); ++j) {
+                        if (routeEntities.get(i).userInfoList.get(j).latitude == marker.getPosition().latitude
+                                && routeEntities.get(i).userInfoList.get(j).longitude == marker.getPosition().longitude) {
+                            showSingleInfoDialog(routeEntities.get(i).userInfoList.get(j));
                             return true;
                         }
                     }
@@ -413,10 +414,10 @@ public class NavigationActivity extends AutoBaseTitleActivity {
                     public void onError(String message) {
                         Random random = new Random();
 
-                        for (int i = 0; i < routeList.size(); ++i) {
-                            if (routeList.get(i).type.equals(RouteConstants.route_type_wait)) {
+                        for (int i = 0; i < routeEntities.size(); ++i) {
+                            if (routeEntities.get(i).route.type.equals(RouteConstants.route_type_wait)) {
                                 int count = random.nextInt(20);
-                                ArrayList<UserInfo> userInfos = routeList.get(i).userInfoList;
+                                ArrayList<UserInfo> userInfos = routeEntities.get(i).userInfoList;
                                 for (int j = 0; j < count; ++j) {
                                     UserInfo userInfo = new UserInfo();
                                     userInfo.avatar = "http://192.168.1.47/jbh/image/icon_clean_daily.jpg";
@@ -425,8 +426,8 @@ public class NavigationActivity extends AutoBaseTitleActivity {
                                     userInfo.endDesc = "保定易县";
                                     userInfo.name = "测试账号" + random.nextInt(10);
                                     userInfo.telephone = "13718863263";
-                                    userInfo.latitude = routeList.get(i).latitude + 0.0001 * random.nextInt(100);
-                                    userInfo.longitude = routeList.get(i).longitude + 0.0001 * random.nextInt(100);
+                                    userInfo.latitude = routeEntities.get(i).route.latitude + 0.0001 * random.nextInt(100);
+                                    userInfo.longitude = routeEntities.get(i).route.longitude + 0.0001 * random.nextInt(100);
                                     userInfos.add(userInfo);
                                 }
                             }

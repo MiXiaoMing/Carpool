@@ -22,4 +22,21 @@ public class TimeUtils {
             w = 0;
         return weekDays[w];
     }
+
+    public static int getMinutes(String data) {
+        String hour = data.substring(0, data.indexOf(":"));
+        String minutes = data.substring(data.indexOf(":") + 1);
+        return Integer.parseInt(hour) * 60 + Integer.parseInt(minutes);
+    }
+
+    public static String addTime(String data, int add) {
+        int totalMinutes = getMinutes(data) + add;
+        int hour = totalMinutes / 60;
+        int minutes = totalMinutes % 60;
+        if (hour < 10) {
+            return "0" + hour + ":" + minutes;
+        } else {
+            return hour + ":" + minutes;
+        }
+    }
 }

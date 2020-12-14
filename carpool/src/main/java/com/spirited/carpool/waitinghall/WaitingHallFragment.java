@@ -192,10 +192,8 @@ public class WaitingHallFragment extends BaseFragment {
                             train.id = "123";
                             train.price = i * 20;
                             train.orderedNumber = i;
-                            train.startPoint = "北京沙河市";
-                            train.endPoint = "保定易县";
                             train.startTime = "20:00";
-                            train.endTime = "22:00";
+                            train.occupiedTime = i * 10;
 
                             CarInfo carInfo = new CarInfo();
                             carInfo.totalOrderedCount = i * 100;

@@ -1,4 +1,4 @@
-package com.spirited.carpool.api.route;
+package com.spirited.carpool.api.train;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;

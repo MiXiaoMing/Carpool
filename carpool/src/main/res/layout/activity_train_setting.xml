@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="#f7f6f4">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70px"
+        android:background="@color/white">
+
+        <com.spirited.support.component.FontTextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="13px"
+            android:textSize="20px"
+            android:text="添加车次信息" />
+
+        <LinearLayout
+            android:id="@+id/llyBack"
+            android:layout_width="40px"
+            android:layout_height="40px"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5px"
+            android:layout_marginLeft="10px"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="15px"
+                android:layout_height="20px"
+                android:src="@drawable/icon_back"/>
+
+        </LinearLayout>
+
+        <com.spirited.support.component.FontTextView
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:id="@+id/tvDelete"
+            android:layout_width="40px"
+            android:layout_height="40px"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5px"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15px"
+            android:textColor="@color/blue_text_light"
+            android:textSize="13px"
+            android:text="删除"/>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:paddingTop="12px"
+            android:paddingBottom="30px">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50px"
+                android:background="@color/white">
+
+                <com.spirited.support.component.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15px"
+                    android:textColor="#676767"
+                    android:textSize="13px"
+                    android:text="发车时间"/>
+
+                <com.spirited.support.component.FontTextView
+                    android:id="@+id/tvStartTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10px"
+                    android:paddingRight="10px"
+                    android:layout_marginLeft="80px"
+                    android:text="00:00"
+                    android:textColor="#000000"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <TimePicker
+                android:id="@+id/timePicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:timePickerMode="spinner"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50px"
+                android:layout_marginTop="1px"
+                android:background="@color/white">
+
+                <com.spirited.support.component.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15px"
+                    android:textColor="#676767"
+                    android:textSize="13px"
+                    android:text="车程"/>
+
+                <EditText
+                    android:id="@+id/etDistance"
+                    android:layout_width="120px"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="80px"
+                    android:paddingLeft="5px"
+                    android:background="@null"
+                    android:inputType="number"
+                    android:hint="输入车程长度"
+                    android:textSize="13px"
+                    android:textColor="#323232"/>
+
+                <com.spirited.support.component.FontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingRight="10px"
+                    android:layout_marginLeft="200px"
+                    android:text="千米"
+                    android:textColor="#000000"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50px"
+                android:layout_marginTop="1px"
+                android:background="@color/white">
+
+                <com.spirited.support.component.FontTextView
+                    android:layout_width="65px"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15px"
+                    android:textColor="#676767"
+                    android:textSize="13px"
+                    android:text="耗时"/>
+
+                <EditText
+                    android:id="@+id/etOccupiedHour"
+                    android:layout_width="40px"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:inputType="number"
+                    android:paddingLeft="5px"
+                    android:background="@null"
+                    android:hint="0"
+                    android:textSize="13px"
+                    android:textColor="#323232"/>
+
+                <com.spirited.support.component.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="小时"
+                    android:textColor="#000000"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etOccupiedMinus"
+                    android:layout_width="40px"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10px"
+                    android:inputType="number"
+                    android:paddingLeft="5px"
+                    android:background="@null"
+                    android:hint="0"
+                    android:textSize="13px"
+                    android:textColor="#323232"/>
+
+                <com.spirited.support.component.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="分"
+                    android:textColor="#000000"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50px"
+                android:layout_marginTop="12px"
+                android:background="@color/white">
+
+                <com.spirited.support.component.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15px"
+                    android:textColor="#676767"
+                    android:textSize="13px"
+                    android:text="始发点"/>
+
+                <EditText
+                    android:id="@+id/etStartPosition"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="100px"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="80px"
+                    android:paddingLeft="5px"
+                    android:background="@null"
+                    android:hint="点击输入始发点详细地址"
+                    android:textSize="13px"
+                    android:textColor="#323232"/>
+
+                <LinearLayout
+                    android:id="@+id/llyStartPosition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="15px">
+
+                    <ImageView
+                        android:layout_width="15px"
+                        android:layout_height="17px"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15px"
+                        android:src="@drawable/icon_position" />
+
+                    <com.spirited.support.component.FontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/blue_text_light"
+                        android:layout_marginLeft="5px"
+                        android:textSize="11px"
+                        android:text="地图选点"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50px"
+                android:layout_marginTop="1px"
+                android:background="@color/white">
+
+                <com.spirited.support.component.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15px"
+                    android:textColor="#676767"
+                    android:textSize="13px"
+                    android:text="终点"/>
+
+                <EditText
+                    android:id="@+id/etEndPosition"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="100px"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="80px"
+                    android:paddingLeft="5px"
+                    android:background="@null"
+                    android:hint="点击输入终点详细地址"
+                    android:textSize="13px"
+                    android:textColor="#323232"/>
+
+                <LinearLayout
+                    android:id="@+id/llyEndPosition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="15px">
+
+                    <ImageView
+                        android:layout_width="15px"
+                        android:layout_height="17px"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15px"
+                        android:src="@drawable/icon_position" />
+
+                    <com.spirited.support.component.FontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/blue_text_light"
+                        android:layout_marginLeft="5px"
+                        android:textSize="11px"
+                        android:text="地图选点"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <com.spirited.support.component.FontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1px"
+                android:background="@color/white"
+                android:paddingRight="15px"
+                android:paddingTop="5px"
+                android:paddingBottom="5px"
+                android:gravity="center_vertical|right"
+                android:textSize="13px"
+                android:textColor="@color/gray_line"
+                android:text="点击下面地图，设置途径县市及上车点"/>
+            
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="180px">
+
+                <com.baidu.mapapi.map.MapView
+                    android:id="@+id/mapView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <View
+                    android:id="@+id/viewMap"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50px"
+                android:layout_marginTop="12px"
+                android:background="@color/white">
+
+                <com.spirited.support.component.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15px"
+                    android:textColor="#676767"
+                    android:textSize="13px"
+                    android:text="车票价格"/>
+
+                <EditText
+                    android:id="@+id/etPrice"
+                    android:layout_width="120px"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="80px"
+                    android:paddingLeft="5px"
+                    android:background="@null"
+                    android:inputType="number"
+                    android:hint="点击输入价格"
+                    android:textSize="13px"
+                    android:textColor="#323232"/>
+
+                <com.spirited.support.component.FontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingRight="10px"
+                    android:layout_marginLeft="200px"
+                    android:text="元"
+                    android:textColor="#000000"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50px"
+                android:layout_marginTop="20px"
+                android:background="@color/white">
+
+                <com.spirited.support.component.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15px"
+                    android:textColor="#676767"
+                    android:textSize="13px"
+                    android:text="是否每天自动发布车次信息："/>
+
+                <Switch
+                    android:id="@+id/switchAutoPublish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10px"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.spirited.support.component.FontTextView
+            android:id="@+id/tvCancel"
+            android:layout_width="0dp"
+            android:layout_height="42px"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@color/gray_line"
+            android:textSize="16px"
+            android:textColor="#990000"
+            android:text="撤销本车次"/>
+
+        <com.spirited.support.component.FontTextView
+            android:id="@+id/tvSubmit"
+            android:layout_width="0dp"
+            android:layout_height="42px"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="#00bfaf"
+            android:textSize="16px"
+            android:textColor="@color/white"
+            android:text="保存车次"/>
+
+    </LinearLayout>
+
+</LinearLayout>

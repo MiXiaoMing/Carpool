@@ -1,4 +1,4 @@
-package com.spirited.carpool.api.route;
+package com.spirited.carpool.api.train;
 
 import java.io.Serializable;
 
