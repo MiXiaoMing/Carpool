@@ -63,13 +63,13 @@ public class AutoBaseTitleActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         hideBottomUIMenu();
-//        MobclickAgent.onResume(this);
+        MobclickAgent.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-//        MobclickAgent.onPause(this);
+        MobclickAgent.onPause(this);
     }
 
     /**

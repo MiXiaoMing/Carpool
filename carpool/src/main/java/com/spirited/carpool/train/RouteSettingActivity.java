@@ -254,7 +254,7 @@ public class RouteSettingActivity extends AutoBaseTitleActivity {
                     // 展示所有 途经地点
                     baiduMap.clear();
                     for (int i = 0; i < routes.size(); ++i) {
-                        BaiduMapConfig.addOverlay(baiduMap, routes.get(i).latitude, routes.get(i).longitude, R.drawable.icon_route2);
+                        BaiduMapConfig.addOverlay(baiduMap, routes.get(i).latitude, routes.get(i).longitude, R.drawable.icon_route2_position);
                     }
                     BaiduMapConfig.moveToMiddle(baiduMap, routes.get(0).latitude, routes.get(0).longitude);
                 }
@@ -361,7 +361,7 @@ public class RouteSettingActivity extends AutoBaseTitleActivity {
         } else if (currentType.equals(RouteConstants.route_type_wait)) {
             BaiduMapConfig.addOverlaySingle(baiduMap, currentRoute.latitude, currentRoute.longitude, R.drawable.icon_wait);
         } else if (currentType.equals(RouteConstants.route_type_route)) {
-            BaiduMapConfig.addOverlaySingle(baiduMap, currentRoute.latitude, currentRoute.longitude, R.drawable.icon_route2);
+            BaiduMapConfig.addOverlaySingle(baiduMap, currentRoute.latitude, currentRoute.longitude, R.drawable.icon_route2_position);
         } else if (currentType.equals(RouteConstants.route_type_end)) {
             BaiduMapConfig.addOverlaySingle(baiduMap, currentRoute.latitude, currentRoute.longitude, R.drawable.icon_end);
         }

@@ -217,6 +217,120 @@
                     android:layout_marginLeft="15px"
                     android:textColor="#676767"
                     android:textSize="13px"
+                    android:text="车辆"/>
+
+                <com.spirited.support.component.FontTextView
+                    android:id="@+id/tvCarNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="100px"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="80px"
+                    android:paddingLeft="5px"
+                    android:background="@null"
+                    android:hint="车牌号"
+                    android:textSize="13px"
+                    android:textColor="#323232"/>
+
+                <LinearLayout
+                    android:id="@+id/llyCar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="15px">
+
+                    <ImageView
+                        android:layout_width="15px"
+                        android:layout_height="17px"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15px"
+                        android:src="@drawable/icon_car" />
+
+                    <com.spirited.support.component.FontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/blue_text_light"
+                        android:layout_marginLeft="5px"
+                        android:textSize="11px"
+                        android:text="选择车辆"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50px"
+                android:layout_marginTop="12px"
+                android:background="@color/white">
+
+                <com.spirited.support.component.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15px"
+                    android:textColor="#676767"
+                    android:textSize="13px"
+                    android:text="行车路线"/>
+
+                <com.spirited.support.component.FontTextView
+                    android:id="@+id/tvRoute"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="100px"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="80px"
+                    android:paddingLeft="5px"
+                    android:background="@null"
+                    android:hint="路线名称"
+                    android:textSize="13px"
+                    android:textColor="#323232"/>
+
+                <LinearLayout
+                    android:id="@+id/llyRoute"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="15px">
+
+                    <ImageView
+                        android:layout_width="15px"
+                        android:layout_height="17px"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15px"
+                        android:src="@drawable/icon_route" />
+
+                    <com.spirited.support.component.FontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/blue_text_light"
+                        android:layout_marginLeft="5px"
+                        android:textSize="11px"
+                        android:text="选择路线"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50px"
+                android:layout_marginTop="12px"
+                android:background="@color/white">
+
+                <com.spirited.support.component.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15px"
+                    android:textColor="#676767"
+                    android:textSize="13px"
                     android:text="始发点"/>
 
                 <EditText
@@ -327,7 +441,7 @@
                 android:paddingTop="5px"
                 android:paddingBottom="5px"
                 android:gravity="center_vertical|right"
-                android:textSize="13px"
+                android:textSize="11px"
                 android:textColor="@color/gray_line"
                 android:text="点击下面地图，设置途径县市及上车点"/>
             

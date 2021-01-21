@@ -14,11 +14,11 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <com.spirited.support.component.RoundCornerImageView
+        <ImageView
             android:id="@+id/ivAvatar"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            app:radius="5dp"
+            android:scaleType="centerInside"
             tools:src="@drawable/icon_app"/>
 
         <LinearLayout

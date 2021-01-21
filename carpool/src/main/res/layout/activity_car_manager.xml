@@ -3,11 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white">
+    android:background="#f7f6f4">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="70px">
+        android:layout_height="70px"
+        android:background="@color/white">
 
         <com.spirited.support.component.FontTextView
             android:id="@+id/tvTitle"
@@ -17,45 +18,50 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="13px"
             android:textSize="20px"
-            android:text="车次信息" />
+            android:text="车辆管理" />
 
-        <RelativeLayout
-            android:id="@+id/rlyAdd"
-            android:layout_width="30px"
-            android:layout_height="30px"
+        <LinearLayout
+            android:id="@+id/llyBack"
+            android:layout_width="40px"
+            android:layout_height="40px"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="15px"
-            android:layout_marginBottom="10px">
+            android:layout_marginBottom="5px"
+            android:layout_marginLeft="10px"
+            android:gravity="center">
 
             <ImageView
-                android:layout_width="40px"
-                android:layout_height="40px"
-                android:layout_centerInParent="true"
-                android:src="@drawable/icon_add"/>
+                android:layout_width="15px"
+                android:layout_height="20px"
+                android:src="@drawable/icon_back"/>
 
-        </RelativeLayout>
+        </LinearLayout>
 
     </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/gray_line"/>
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingLeft="15px"
-            android:paddingRight="15px"/>
+            android:paddingTop="20px"
+            android:paddingBottom="30px"/>
 
     </android.support.v4.widget.SwipeRefreshLayout>
+
+    <com.spirited.support.component.FontTextView
+        android:id="@+id/tvAdd"
+        android:layout_width="match_parent"
+        android:layout_height="42px"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:background="#02bdac"
+        android:textSize="16px"
+        android:textColor="@color/white"
+        android:text="添加车辆"/>
 
 </LinearLayout>

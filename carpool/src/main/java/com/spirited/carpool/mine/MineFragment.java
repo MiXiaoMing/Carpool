@@ -96,7 +96,7 @@ public class MineFragment extends BaseFragment {
                     break;
 
                 case R.id.rlySetting:
-//                    startActivity(new Intent(MineFragment.this.getActivity(), UserInfoActivity.class));
+                    startActivity(new Intent(MineFragment.this.getActivity(), UserInfoActivity.class));
                     break;
 
                 case R.id.rlyLogout:
@@ -107,7 +107,7 @@ public class MineFragment extends BaseFragment {
                     break;
 
                 case R.id.llyCar:
-//                    startActivity(new Intent(MineFragment.this.getActivity(), AddressListActivity.class));
+                    startActivity(new Intent(MineFragment.this.getActivity(), CarManagerActivity.class));
                     break;
 
                 case R.id.llyFeedback:

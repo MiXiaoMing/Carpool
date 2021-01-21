@@ -5,10 +5,10 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/carpool"
-        android:label="城际拼车"
+        android:icon="@drawable/icon_app"
+        android:label="袋鼠拼车"
         android:name="com.spirited.carpool.CarpoolApplication"
-        android:roundIcon="@drawable/carpool"
+        android:roundIcon="@drawable/icon_app"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:replace="android:label,android:allowBackup,android:name">
@@ -32,8 +32,17 @@
         <!--   车次详情     -->
         <activity android:name=".waitinghall.TrainDetailActivity" android:screenOrientation="portrait"/>
 
+        <!--   车辆管理     -->
+        <activity android:name=".mine.CarManagerActivity" android:screenOrientation="portrait"/>
+        <!--   车辆管理     -->
+        <activity android:name=".mine.CarSettingActivity" android:screenOrientation="portrait"/>
         <!--   提交反馈     -->
         <activity android:name=".mine.FeedbackActivity" android:screenOrientation="portrait"/>
+        <!--   用户信息     -->
+        <activity android:name=".mine.UserInfoActivity" android:screenOrientation="portrait"/>
+        <!--   名称设置     -->
+        <activity android:name=".mine.SettingNameActivity" android:screenOrientation="portrait"/>
+
 
         <!--自动适配-->
         <meta-data android:name="design_width" android:value="375" />

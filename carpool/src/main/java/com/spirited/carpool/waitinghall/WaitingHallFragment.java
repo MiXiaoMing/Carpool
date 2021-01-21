@@ -37,9 +37,7 @@ import com.zhy.autolayout.utils.AutoUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -198,7 +196,7 @@ public class WaitingHallFragment extends BaseFragment {
                             CarInfo carInfo = new CarInfo();
                             carInfo.totalOrderedCount = i * 100;
                             carInfo.approvedLoadNumber = i * 30;
-                            carInfo.avatar = "http://192.168.1.47/jbh/image/icon_clean_daily.jpg";
+                            carInfo.cover = "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2241951752,3741800679&fm=26&gp=0.jpg";
                             carInfo.contact = "米晓明";
                             carInfo.description = "平安回家";
                             carInfo.id = i * i + "";

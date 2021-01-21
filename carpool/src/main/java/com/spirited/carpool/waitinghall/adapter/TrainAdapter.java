@@ -10,18 +10,22 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.appframe.library.component.image.ImageLoader;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.spirited.carpool.R;
 import com.spirited.carpool.api.train.RouteEntity;
 import com.spirited.carpool.waitinghall.TrainDetailActivity;
 import com.spirited.carpool.api.waitinghall.TrainEntity;
 import com.spirited.support.component.LoadMoreAdapter;
 import com.spirited.support.constants.RouteConstants;
+import com.spirited.support.utils.ImageUtil;
 import com.spirited.support.utils.TimeUtils;
 
 import java.util.List;
 
-
+/**
+ * 车次 item
+ */
 public class TrainAdapter extends LoadMoreAdapter<TrainEntity> {
     private Context context;
 
@@ -41,7 +45,7 @@ public class TrainAdapter extends LoadMoreAdapter<TrainEntity> {
         if (viewHolder instanceof ViewHolder) {
             ViewHolder holder = (ViewHolder) viewHolder;
             TrainEntity trainEntity = dataList.get(position);
-            ImageLoader.normal(context, trainEntity.carInfo.avatar, R.drawable.default_image_white, holder.ivAvatar);
+            ImageUtil.loadImageCenterInside(context, trainEntity.carInfo.cover, R.drawable.default_image_white, holder.ivAvatar);
             holder.tvPrice.setText(String.valueOf(trainEntity.train.price));
 
             for (int i = 0; i < trainEntity.routeEntities.size(); ++i) {

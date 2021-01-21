@@ -35,7 +35,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.spirited.carpool.R;
 import com.spirited.carpool.api.CustomObserver;
-import com.spirited.carpool.api.train.Route;
 import com.spirited.carpool.api.train.RouteDataManager;
 import com.spirited.carpool.api.train.RouteEntity;
 import com.spirited.carpool.api.train.RouteListEntity;
@@ -269,13 +268,13 @@ public class NavigationActivity extends AutoBaseTitleActivity {
                 Logger.getLogger().d("两点之间距离：" + distance);
                 if (distance < RouteConstants.distance_arrived) {
                 } else {
-                    BaiduMapConfig.addOverlay(baiduMap, routeEntities.get(i).userInfoList.get(j).latitude, routeEntities.get(i).userInfoList.get(j).longitude, R.drawable.icon_route2);
+                    BaiduMapConfig.addOverlay(baiduMap, routeEntities.get(i).userInfoList.get(j).latitude, routeEntities.get(i).userInfoList.get(j).longitude, R.drawable.icon_route2_position);
                 }
             }
 
             int count = routeEntities.get(i).userInfoList.size();
             if (count == 0) {
-                BaiduMapConfig.addOverlay(baiduMap, routeEntities.get(i).route.latitude, routeEntities.get(i).route.longitude, R.drawable.icon_route2);
+                BaiduMapConfig.addOverlay(baiduMap, routeEntities.get(i).route.latitude, routeEntities.get(i).route.longitude, R.drawable.icon_route2_position);
             } else if (count == 1) {
                 BaiduMapConfig.addOverlay(baiduMap, routeEntities.get(i).route.latitude, routeEntities.get(i).route.longitude, R.drawable.icon_mark1);
             } else if (count == 2) {
@@ -420,7 +419,7 @@ public class NavigationActivity extends AutoBaseTitleActivity {
                                 ArrayList<UserInfo> userInfos = routeEntities.get(i).userInfoList;
                                 for (int j = 0; j < count; ++j) {
                                     UserInfo userInfo = new UserInfo();
-                                    userInfo.avatar = "http://192.168.1.47/jbh/image/icon_clean_daily.jpg";
+                                    userInfo.avatar = "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2241951752,3741800679&fm=26&gp=0.jpg";
                                     userInfo.count = random.nextInt(10);
                                     userInfo.waitDesc = "昌平区于辛庄";
                                     userInfo.endDesc = "保定易县";

@@ -74,7 +74,7 @@ public class TrainDetailActivity extends AutoBaseTitleActivity {
         tvContact.setText(entity.carInfo.contact);
         tvCarNumber.setText(entity.carInfo.carNumber);
         tvApprovedLoadNumber.setText("核载：" + entity.carInfo.approvedLoadNumber + "人");
-        ImageLoader.normal(this, entity.carInfo.avatar, R.drawable.default_image_white, ivAvatar);
+        ImageLoader.normal(this, entity.carInfo.cover, R.drawable.default_image_white, ivAvatar);
         tvTotalOrderedCount.setText("已安全营运 " + entity.carInfo.totalOrderedCount + " 车次");
         tvOrderedNumber.setText(entity.train.orderedNumber + "/" + entity.carInfo.approvedLoadNumber);
         for (int i = 0; i < entity.routeEntities.size(); ++i) {
@@ -198,7 +198,7 @@ public class TrainDetailActivity extends AutoBaseTitleActivity {
                         CarInfo carInfo = new CarInfo();
                         carInfo.totalOrderedCount = 100;
                         carInfo.approvedLoadNumber = 30;
-                        carInfo.avatar = "http://192.168.1.47/jbh/image/icon_clean_daily.jpg";
+                        carInfo.cover = "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2241951752,3741800679&fm=26&gp=0.jpg";
                         carInfo.contact = "米晓明";
                         carInfo.description = "平安回家";
                         carInfo.id = "123";

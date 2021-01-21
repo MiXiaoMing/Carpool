@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#f7f6f4"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70px"
+        android:background="@color/white">
+
+        <com.spirited.support.component.FontTextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="13px"
+            android:textSize="20px"
+            android:text="添加车辆信息" />
+
+        <LinearLayout
+            android:id="@+id/llyBack"
+            android:layout_width="40px"
+            android:layout_height="40px"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5px"
+            android:layout_marginLeft="10px"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="15px"
+                android:layout_height="20px"
+                android:src="@drawable/icon_back"/>
+
+        </LinearLayout>
+
+        <com.spirited.support.component.FontTextView
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:id="@+id/tvDelete"
+            android:layout_width="40px"
+            android:layout_height="40px"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5px"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15px"
+            android:textColor="@color/blue_text_light"
+            android:textSize="13px"
+            android:text="删除"/>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="12px"
+            android:paddingBottom="20px"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="70px"
+                android:gravity="center_vertical"
+                android:background="@color/white">
+
+                <com.spirited.support.component.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15px"
+                    android:textColor="#676767"
+                    android:textSize="13px"
+                    android:text="车辆封面"/>
+
+                <ImageView
+                    android:id="@+id/ivCover"
+                    android:layout_width="65px"
+                    android:layout_height="65px"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15px"
+                    android:src="@drawable/default_image_white"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50px"
+                android:layout_marginTop="1px"
+                android:background="@color/white">
+
+                <com.spirited.support.component.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15px"
+                    android:textColor="#676767"
+                    android:textSize="13px"
+                    android:text="车牌号"/>
+
+                <EditText
+                    android:id="@+id/etCarNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="80px"
+                    android:paddingLeft="5px"
+                    android:background="@null"
+                    android:hint="点击输入车牌号"
+                    android:textSize="13px"
+                    android:textColor="#323232"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50px"
+                android:layout_marginTop="1px"
+                android:background="@color/white">
+
+                <com.spirited.support.component.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15px"
+                    android:textColor="#676767"
+                    android:textSize="13px"
+                    android:text="核载"/>
+
+                <EditText
+                    android:id="@+id/etApprovedLoadNumber"
+                    android:layout_width="120px"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="80px"
+                    android:paddingLeft="5px"
+                    android:background="@null"
+                    android:inputType="number"
+                    android:hint="输入核载人数"
+                    android:textSize="13px"
+                    android:textColor="#323232"/>
+
+                <com.spirited.support.component.FontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingRight="10px"
+                    android:layout_marginLeft="200px"
+                    android:text="人"
+                    android:textColor="#000000"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50px"
+                android:layout_marginTop="12px"
+                android:background="@color/white">
+
+                <com.spirited.support.component.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15px"
+                    android:textColor="#676767"
+                    android:textSize="13px"
+                    android:text="联系人"/>
+
+                <EditText
+                    android:id="@+id/etContact"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="80px"
+                    android:paddingLeft="5px"
+                    android:background="@null"
+                    android:hint="点击输入姓名"
+                    android:textSize="13px"
+                    android:textColor="#323232"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50px"
+                android:layout_marginTop="1px"
+                android:background="@color/white">
+
+                <com.spirited.support.component.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15px"
+                    android:textColor="#676767"
+                    android:textSize="13px"
+                    android:text="手机号码"/>
+
+                <EditText
+                    android:id="@+id/etCellphone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="80px"
+                    android:inputType="phone"
+                    android:paddingLeft="5px"
+                    android:background="@null"
+                    android:hint="点击输入手机号"
+                    android:textSize="13px"
+                    android:textColor="#323232"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15px"
+                android:paddingLeft="15px"
+                android:paddingRight="15px"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px">
+
+                    <com.spirited.support.component.FontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="简介"/>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+
+                    <com.spirited.support.component.FontTextView
+                        android:id="@+id/tvDescCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0/100"/>
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/etDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5px"
+                    android:layout_marginBottom="10px"
+                    android:gravity="start"
+                    android:padding="5px"
+                    android:lines="5"
+                    android:background="@drawable/shape_edit_text_bg"
+                    android:hint="点击输入车辆描述信息"
+                    android:textSize="13px"
+                    android:textColor="#323232"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40px"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:layout_marginTop="12px"
+                android:paddingLeft="15px"
+                android:paddingRight="15px"
+                android:orientation="horizontal">
+
+                <com.spirited.support.component.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="车辆相册"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:id="@+id/ivAdd"
+                    android:layout_width="30px"
+                    android:layout_height="30px"
+                    android:src="@drawable/icon_add"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llyPictures"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1px"
+                android:paddingLeft="15px"
+                android:paddingRight="15px"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="70px"
+                        android:layout_height="70px"
+                        android:src="@drawable/icon_app"/>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+
+                    <ImageView
+                        android:layout_width="70px"
+                        android:layout_height="70px"
+                        android:src="@drawable/icon_app"/>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+
+                    <ImageView
+                        android:layout_width="70px"
+                        android:layout_height="70px"
+                        android:src="@drawable/icon_app"/>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+
+                    <ImageView
+                        android:layout_width="70px"
+                        android:layout_height="70px"
+                        android:src="@drawable/icon_app"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:padding="10px">
+
+                    <ImageView
+                        android:layout_width="70px"
+                        android:layout_height="70px"
+                        android:src="@drawable/icon_app"/>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+
+                    <ImageView
+                        android:layout_width="70px"
+                        android:layout_height="70px"
+                        android:src="@drawable/icon_app"/>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+
+                    <ImageView
+                        android:layout_width="70px"
+                        android:layout_height="70px"
+                        android:src="@drawable/icon_app"/>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+
+                    <ImageView
+                        android:layout_width="70px"
+                        android:layout_height="70px"
+                        android:src="@drawable/icon_app"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <com.spirited.support.component.FontTextView
+        android:id="@+id/tvSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="42px"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:background="#00bfaf"
+        android:textSize="16px"
+        android:textColor="@color/white"
+        android:text="保存车辆"/>
+
+</LinearLayout>

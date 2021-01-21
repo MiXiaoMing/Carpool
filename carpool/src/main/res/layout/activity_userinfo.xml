@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70px"
+        android:background="@color/white">
+
+        <com.spirited.support.component.FontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="13px"
+            android:textSize="20px"
+            android:text="个人信息" />
+
+        <LinearLayout
+            android:id="@+id/llyBack"
+            android:layout_width="40px"
+            android:layout_height="40px"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10px"
+            android:layout_marginBottom="5px"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="15px"
+                android:layout_height="20px"
+                android:src="@drawable/icon_back" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/llyName"
+        android:layout_width="match_parent"
+        android:layout_height="45px"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:layout_marginTop="10px">
+
+        <com.spirited.support.component.FontTextView
+            android:text="名称"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15px"
+            android:textColor="#3a3a3a"
+            android:textSize="14px" />
+
+        <com.spirited.support.component.FontTextView
+            android:id="@+id/tvName"
+            android:gravity="right"
+            android:layout_marginRight="15px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="15px"
+            android:textColor="#3a3a3a"
+            android:textSize="14px" />
+
+        <ImageView
+            android:layout_width="8px"
+            android:layout_height="12px"
+            android:scaleType="centerCrop"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15px"
+            android:src="@drawable/icon_arrow_right" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginLeft="30px"
+        android:layout_height="1px"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45px"
+        android:gravity="center_vertical"
+        android:background="@color/white">
+
+        <com.spirited.support.component.FontTextView
+            android:text="手机号码"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15px"
+            android:textColor="#3a3a3a"
+            android:textSize="14px" />
+
+        <com.spirited.support.component.FontTextView
+            android:id="@+id/tvCellphone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:layout_marginRight="20px"
+            android:textColor="@color/gray_text"
+            tools:text="13718863263"
+            android:textSize="14px" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

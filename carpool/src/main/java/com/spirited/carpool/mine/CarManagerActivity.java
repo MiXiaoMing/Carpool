@@ -1,4 +1,4 @@
-package com.spirited.carpool.train;
+package com.spirited.carpool.mine;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -8,22 +8,19 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.appframe.utils.logger.Logger;
 import com.spirited.carpool.R;
-import com.spirited.carpool.train.adapter.TrainDepartureAdapter;
 import com.spirited.carpool.api.CustomObserver;
 import com.spirited.carpool.api.PageBody;
+import com.spirited.carpool.api.mine.CarListEntity;
+import com.spirited.carpool.api.mine.MineManager;
 import com.spirited.carpool.api.waitinghall.CarInfo;
-import com.spirited.carpool.api.waitinghall.Train;
-import com.spirited.carpool.api.waitinghall.TrainEntity;
-import com.spirited.carpool.api.waitinghall.TrainListEntity;
-import com.spirited.carpool.api.waitinghall.WaitingHallManager;
-import com.spirited.support.BaseFragment;
+import com.spirited.carpool.mine.adapter.CarAdapter;
+import com.spirited.support.AutoBaseTitleActivity;
 import com.spirited.support.component.RecyclerViewItemDecoration;
 import com.spirited.support.component.RecyclerViewScrollListener;
 import com.zhy.autolayout.utils.AutoUtils;
@@ -35,46 +32,41 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * 候车大厅
+ * 车辆管理页面
  */
-public class TrainFragment extends BaseFragment {
-    private View view;
+public class CarManagerActivity extends AutoBaseTitleActivity {
 
-    private TrainDepartureAdapter trainAdapter;
+    private CarAdapter carAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
 
-    private ArrayList<TrainEntity> dataList = new ArrayList<>();
+    private ArrayList<CarInfo> dataList = new ArrayList<>();
     private int page = 0;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (view == null) {
-            view = inflater.inflate(R.layout.fragment_train, null);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_car_manager);
 
-            initView();
-        }
-        ViewGroup parent = (ViewGroup) view.getParent();
-        if (parent != null) {
-            parent.removeView(view);
-        }
-
-        return view;
+        initView();
+        getData();
     }
 
     private void initView() {
-        RelativeLayout rlyAdd = view.findViewById(R.id.rlyAdd);
-        rlyAdd.setOnClickListener(clickListener);
+        LinearLayout llyBack = findViewById(R.id.llyBack);
+        TextView tvAdd = findViewById(R.id.tvAdd);
 
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        RecyclerViewItemDecoration itemDecoration = new RecyclerViewItemDecoration(this.getContext(), AutoUtils.getPercentWidthSize(15));
+        llyBack.setOnClickListener(clickListener);
+        tvAdd.setOnClickListener(clickListener);
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        RecyclerViewItemDecoration itemDecoration = new RecyclerViewItemDecoration(this, AutoUtils.getPercentWidthSize(10));
         recyclerView.addItemDecoration(itemDecoration);
         ((DefaultItemAnimator) recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
-        trainAdapter = new TrainDepartureAdapter(this.getContext(), dataList);
-        recyclerView.setAdapter(trainAdapter);
+        carAdapter = new CarAdapter(this, dataList);
+        recyclerView.setAdapter(carAdapter);
 
-        swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout);
+        swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
         swipeRefreshLayout.setColorSchemeColors(Color.parseColor("#4DB6AC"));
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -90,7 +82,7 @@ public class TrainFragment extends BaseFragment {
         recyclerView.addOnScrollListener(new RecyclerViewScrollListener() {
             @Override
             public void onScrollToBottom() {
-                trainAdapter.setLoadState(trainAdapter.LOADING);
+                carAdapter.setLoadState(carAdapter.LOADING);
                 ++page;
                 getData();
             }
@@ -102,27 +94,30 @@ public class TrainFragment extends BaseFragment {
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            int id = view.getId();
-            switch (id) {
-                case R.id.rlyAdd:
-                    Intent intent = new Intent(TrainFragment.this.getContext(), TrainSettingActivity.class);
-                    intent.putExtra("type", "U");
-                    TrainFragment.this.getContext().startActivity(intent);
+            switch (view.getId()) {
+                case R.id.llyBack:
+                    finish();
+                    break;
+
+                case R.id.tvAdd:
+                    Intent intent = new Intent(CarManagerActivity.this, CarSettingActivity.class);
+                    intent.putExtra("type", "A");
+                    startActivity(intent);
                     break;
             }
         }
     };
 
     private void getData() {
-        Logger.getLogger().d("获取车次列表");
+        Logger.getLogger().d("获取车辆列表");
         PageBody body = new PageBody();
         body.page = page;
         body.number = 10;
 
-        new WaitingHallManager().getTrainList(body)
+        new MineManager().getCarList(body)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new CustomObserver<TrainListEntity>() {
+                .subscribe(new CustomObserver<CarListEntity>() {
 
                     @Override
                     public void onError(String message) {
@@ -130,18 +125,12 @@ public class TrainFragment extends BaseFragment {
                             swipeRefreshLayout.setRefreshing(false);
                         }
 
-                        trainAdapter.setLoadState(trainAdapter.LOADING_COMPLETE);
+                        carAdapter.setLoadState(carAdapter.LOADING_COMPLETE);
 
-                        TrainListEntity trainList = new TrainListEntity();
-                        trainList.data = new ArrayList<>();
+                        CarListEntity carListEntity = new CarListEntity();
+                        carListEntity.data = new ArrayList<>();
 
                         for (int i = 0; i < 10; ++i) {
-                            Train train = new Train();
-                            train.id = "123";
-                            train.price = i * 20;
-                            train.orderedNumber = i;
-                            train.startTime = "20:00";
-
                             CarInfo carInfo = new CarInfo();
                             carInfo.totalOrderedCount = i * 100;
                             carInfo.approvedLoadNumber = i * 30;
@@ -151,35 +140,33 @@ public class TrainFragment extends BaseFragment {
                             carInfo.id = i * i + "";
                             carInfo.telephone = "13718863263";
                             carInfo.carNumber = "冀A X753F";
+                            carInfo.pictures.add("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2241951752,3741800679&fm=26&gp=0.jpg");
 
-                            TrainEntity entity = new TrainEntity();
-                            entity.carInfo = carInfo;
-                            entity.train = train;
-
-                            trainList.data.add(entity);
+                            carListEntity.data.add(carInfo);
                         }
 
-                        dataList.addAll(trainList.data);
-                        trainAdapter.notifyDataSetChanged();
+                        dataList.addAll(carListEntity.data);
+                        carAdapter.notifyDataSetChanged();
                     }
 
                     @Override
-                    public void onSuccess(TrainListEntity result) {
+                    public void onSuccess(CarListEntity result) {
                         if (swipeRefreshLayout != null && swipeRefreshLayout.isRefreshing()) {
                             swipeRefreshLayout.setRefreshing(false);
                         }
 
-                        trainAdapter.setLoadState(trainAdapter.LOADING_COMPLETE);
+                        carAdapter.setLoadState(carAdapter.LOADING_COMPLETE);
 
-                        List<TrainEntity> trainList = result.data;
+                        List<CarInfo> trainList = result.data;
                         if (trainList == null || trainList.size() == 0) {
-                            trainAdapter.setLoadState(trainAdapter.LOADING_END);
+                            carAdapter.setLoadState(carAdapter.LOADING_END);
                             return;
                         }
 
                         dataList.addAll(trainList);
-                        trainAdapter.notifyDataSetChanged();
+                        carAdapter.notifyDataSetChanged();
                     }
                 });
     }
 }
+

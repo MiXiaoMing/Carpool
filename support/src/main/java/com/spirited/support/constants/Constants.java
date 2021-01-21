@@ -15,6 +15,9 @@ public class Constants {
     public static final String carousel_native = "2";   // 应用内
 
 
+    //页面间数据传递
+    public static final int req_setting_name = 1001;
+
     /**
      * 客服电话
      */
