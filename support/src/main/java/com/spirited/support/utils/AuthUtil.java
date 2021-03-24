@@ -1,7 +1,5 @@
 package com.spirited.support.utils;
 
-import com.appframe.library.storage.SharePreferences;
-
 /**
  * auth数据工具类
  */

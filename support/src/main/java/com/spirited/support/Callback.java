@@ -1,4 +1,4 @@
-package com.spirited.support.common;
+package com.spirited.support;
 
 
 public abstract class Callback<T> {

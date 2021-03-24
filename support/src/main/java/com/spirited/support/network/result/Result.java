@@ -1,4 +1,4 @@
-package com.spirited.support.common;
+package com.spirited.support.network.result;
 
 import java.io.Serializable;
 

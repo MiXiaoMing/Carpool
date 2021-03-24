@@ -2,8 +2,7 @@ package com.spirited.support.utils;
 
 import android.text.TextUtils;
 
-import com.appframe.library.storage.SharePreferences;
-import com.spirited.support.common.UserInfo;
+import com.spirited.support.network.entity.UserInfo;
 
 /**
  * 当前用户信息

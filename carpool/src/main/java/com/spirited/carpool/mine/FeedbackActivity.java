@@ -7,14 +7,14 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.appframe.library.component.notify.AFToast;
-import com.appframe.utils.logger.Logger;
 import com.spirited.carpool.R;
 import com.spirited.carpool.api.CustomObserver;
 import com.spirited.carpool.api.other.FeedbackEntity;
 import com.spirited.carpool.api.other.OtherDataManager;
 import com.spirited.support.AutoBaseTitleActivity;
+import com.spirited.support.component.AFToast;
 import com.spirited.support.component.TypefaceHelper;
+import com.spirited.support.logger.Logger;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;

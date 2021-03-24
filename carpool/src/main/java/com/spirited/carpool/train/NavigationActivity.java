@@ -9,9 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.appframe.library.component.image.ImageLoader;
-import com.appframe.library.storage.SharePreferences;
-import com.appframe.utils.logger.Logger;
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
@@ -44,6 +41,9 @@ import com.spirited.carpool.overlay.DrivingRouteOverlay;
 import com.spirited.carpool.train.adapter.RouteUserAdapter;
 import com.spirited.support.AutoBaseTitleActivity;
 import com.spirited.support.constants.RouteConstants;
+import com.spirited.support.logger.Logger;
+import com.spirited.support.utils.ImageUtil;
+import com.spirited.support.utils.SharePreferences;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -198,7 +198,7 @@ public class NavigationActivity extends AutoBaseTitleActivity {
      */
     private void showSingleInfoDialog(UserInfo userInfo) {
         llyOne.setVisibility(View.VISIBLE);
-        ImageLoader.normal(this, userInfo.avatar, R.drawable.default_image_white, ivIcon);
+        ImageUtil.normal(this, userInfo.avatar, R.drawable.default_image_white, ivIcon);
         tvNick.setText(userInfo.name);
         tvNumber.setText("第" + userInfo.count + "次同行");
         tvWait.setText("等车点：" + userInfo.waitDesc);

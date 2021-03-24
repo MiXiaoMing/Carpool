@@ -13,19 +13,11 @@ buildscript {
 
 allprojects {
     repositories {
-        maven { url "https://maven.google.com" }
         google()
         jcenter()
+//        maven { url "https://maven.google.com" }
         maven { url "https://jitpack.io" }
         maven { url 'https://dl.bintray.com/umsdk/release' }
-
-        maven {
-            url 'http://192.168.1.33:8082/repository/android/'
-            credentials  {
-                username  'admin'
-                password 'admin'
-            }
-        }
     }
 }
 

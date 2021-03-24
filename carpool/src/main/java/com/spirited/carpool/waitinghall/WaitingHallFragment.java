@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.appframe.utils.logger.Logger;
 import com.spirited.carpool.R;
 import com.spirited.carpool.api.CustomObserver;
 import com.spirited.carpool.api.PageBody;
@@ -28,6 +27,7 @@ import com.spirited.support.BaseFragment;
 import com.spirited.support.component.RecyclerViewItemDecoration;
 import com.spirited.support.component.RecyclerViewScrollListener;
 import com.spirited.support.constants.Constants;
+import com.spirited.support.logger.Logger;
 import com.spirited.support.utils.GlideImageLoader;
 import com.spirited.support.utils.ReportUtil;
 import com.youth.banner.Banner;

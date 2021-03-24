@@ -3,15 +3,15 @@ package com.spirited.carpool.api;
 import android.content.Intent;
 import android.text.TextUtils;
 
-import com.appframe.library.component.notify.AFToast;
-import com.appframe.utils.NetUtil;
-import com.appframe.utils.app.ActivityUtil;
-import com.appframe.utils.app.AppRuntimeUtil;
 import com.spirited.carpool.mine.LoginActivity;
 import com.spirited.carpool.R;
-import com.spirited.support.common.Result;
+import com.spirited.support.component.AFToast;
+import com.spirited.support.network.result.Result;
 import com.spirited.support.utils.AuthUtil;
+import com.spirited.support.utils.NetUtil;
 import com.spirited.support.utils.ReportUtil;
+import com.spirited.support.utils.app.ActivityUtil;
+import com.spirited.support.utils.app.AppRuntimeUtil;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -63,7 +63,7 @@ public abstract class CustomObserver<T extends Result> implements Observer<T> {
 
             } else {
                 if (!NetUtil.isConnect(AppRuntimeUtil.getInstance().getCurrentActivity())) {
-                    AFToast.showShort(AppRuntimeUtil.getInstance().getCurrentActivity(), R.string.network_failed);
+                    AFToast.showShort(AppRuntimeUtil.getInstance().getCurrentActivity(), R.string.connect_failure);
                 }
             }
         }

@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.appframe.library.component.image.ImageLoader;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.utils.DistanceUtil;
 import com.spirited.carpool.api.train.RouteEntity;
@@ -19,6 +18,7 @@ import com.spirited.carpool.train.NavigationActivity;
 import com.spirited.carpool.R;
 import com.spirited.carpool.api.train.UserInfo;
 import com.spirited.support.constants.RouteConstants;
+import com.spirited.support.utils.ImageUtil;
 
 import java.util.ArrayList;
 
@@ -65,7 +65,7 @@ public class RouteUserAdapter extends BaseAdapter {
 
         final UserInfo userInfo = entities.get(position);
 
-        ImageLoader.normal(activity, userInfo.avatar, R.drawable.default_image_white, viewHolder.ivIcon);
+        ImageUtil.normal(activity, userInfo.avatar, R.drawable.default_image_white, viewHolder.ivIcon);
         viewHolder.tvNick.setText(userInfo.name);
         viewHolder.tvEnd.setText("下车点：" + userInfo.endDesc);
 

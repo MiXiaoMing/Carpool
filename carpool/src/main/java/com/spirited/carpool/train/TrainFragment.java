@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-import com.appframe.utils.logger.Logger;
 import com.spirited.carpool.R;
 import com.spirited.carpool.train.adapter.TrainDepartureAdapter;
 import com.spirited.carpool.api.CustomObserver;
@@ -26,6 +25,7 @@ import com.spirited.carpool.api.waitinghall.WaitingHallManager;
 import com.spirited.support.BaseFragment;
 import com.spirited.support.component.RecyclerViewItemDecoration;
 import com.spirited.support.component.RecyclerViewScrollListener;
+import com.spirited.support.logger.Logger;
 import com.zhy.autolayout.utils.AutoUtils;
 
 import java.util.ArrayList;

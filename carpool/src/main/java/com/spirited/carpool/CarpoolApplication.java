@@ -4,13 +4,12 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 
-import com.appframe.framework.config.MetaDataConfig;
-import com.appframe.library.application.AFApplication;
-import com.appframe.library.application.AFMultiDexApplication;
-import com.appframe.utils.logger.Logger;
 import com.baidu.mapapi.CoordType;
 import com.baidu.mapapi.SDKInitializer;
+import com.spirited.support.application.AFApplication;
+import com.spirited.support.application.AFMultiDexApplication;
 import com.spirited.support.constants.Constants;
+import com.spirited.support.logger.Logger;
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
 import com.umeng.analytics.MobclickAgent;
@@ -43,7 +42,6 @@ public class CarpoolApplication extends AFMultiDexApplication {
     }
 
     private void initData() {
-        new MetaDataConfig().initSPStoreName("carpool");
     }
 
     private void initBugly() {

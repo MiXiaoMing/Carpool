@@ -1,9 +1,6 @@
 package com.spirited.carpool.api.waitinghall;
 
-import com.spirited.support.common.BaseArrayResult;
-
-import java.io.Serializable;
-import java.util.ArrayList;
+import com.spirited.support.network.result.BaseArrayResult;
 
 /**
  * 车辆 实体

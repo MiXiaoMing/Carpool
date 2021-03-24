@@ -6,9 +6,9 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 
-import com.appframe.library.application.AFApplication;
-import com.appframe.utils.app.AppRuntimeUtil;
-import com.appframe.utils.logger.Logger;
+import com.spirited.support.application.AFApplication;
+import com.spirited.support.logger.Logger;
+import com.spirited.support.utils.app.AppRuntimeUtil;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;

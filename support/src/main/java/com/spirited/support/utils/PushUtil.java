@@ -1,8 +1,6 @@
 package com.spirited.support.utils;
 
 
-import com.appframe.library.storage.SharePreferences;
-
 public class PushUtil {
     private static String key_cid = "cid";  //从个推获取的设备唯一ID
 

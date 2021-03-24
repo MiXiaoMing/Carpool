@@ -2,4 +2,6 @@
     <string name="app_name">support</string>
 
     <string name="connect_failure">网络连接错误</string>
+    <string name="image_view_content_description">图片内容描述</string>
+    <string name="network_failed">无法连接至服务器,请检查网络连接或稍后再试</string>
 </resources>

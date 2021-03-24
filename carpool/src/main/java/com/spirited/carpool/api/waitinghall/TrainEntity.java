@@ -1,7 +1,7 @@
 package com.spirited.carpool.api.waitinghall;
 
 import com.spirited.carpool.api.train.RouteEntity;
-import com.spirited.support.common.BaseResult;
+import com.spirited.support.network.result.BaseResult;
 
 import java.io.Serializable;
 import java.util.ArrayList;

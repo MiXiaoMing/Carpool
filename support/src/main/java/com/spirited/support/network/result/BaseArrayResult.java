@@ -1,6 +1,7 @@
-package com.spirited.support.common;
+package com.spirited.support.network.result;
 
-import com.appframe.library.network.http.validate.IAfterDeserializeAction;
+
+import com.spirited.support.network.validate.IAfterDeserializeAction;
 
 import java.io.Serializable;
 import java.util.ArrayList;

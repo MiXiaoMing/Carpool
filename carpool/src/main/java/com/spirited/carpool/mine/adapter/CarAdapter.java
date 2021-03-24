@@ -10,11 +10,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.appframe.library.component.image.ImageLoader;
 import com.spirited.carpool.R;
 import com.spirited.carpool.api.waitinghall.CarInfo;
 import com.spirited.carpool.mine.CarSettingActivity;
 import com.spirited.support.component.LoadMoreAdapter;
+import com.spirited.support.utils.ImageUtil;
 import com.zhy.autolayout.utils.AutoUtils;
 
 import java.util.List;
@@ -42,7 +42,7 @@ public class CarAdapter extends LoadMoreAdapter<CarInfo> {
             ViewHolder holder = (ViewHolder) viewHolder;
             CarInfo carInfo = dataList.get(position);
 
-            ImageLoader.normal(context, carInfo.pictures.get(0), R.drawable.default_image_white, holder.ivCar);
+            ImageUtil.normal(context, carInfo.pictures.get(0), R.drawable.default_image_white, holder.ivCar);
             holder.tvCarNumber.setText(carInfo.carNumber);
             holder.tvTelephone.setText(carInfo.telephone);
             holder.tvNumber.setText("已安全运营" + carInfo.totalOrderedCount + "车次");

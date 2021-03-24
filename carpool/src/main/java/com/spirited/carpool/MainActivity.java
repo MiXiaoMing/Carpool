@@ -11,11 +11,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.appframe.library.component.notify.AFToast;
 import com.spirited.carpool.mine.MineFragment;
 import com.spirited.carpool.train.TrainFragment;
 import com.spirited.carpool.waitinghall.WaitingHallFragment;
 import com.spirited.support.AutoBaseTitleActivity;
+import com.spirited.support.component.AFToast;
 
 
 public class MainActivity extends AutoBaseTitleActivity {

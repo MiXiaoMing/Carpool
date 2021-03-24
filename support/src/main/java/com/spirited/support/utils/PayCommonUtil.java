@@ -1,6 +1,6 @@
 package com.spirited.support.utils;
 
-import com.appframe.utils.logger.Logger;
+import com.spirited.support.logger.Logger;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

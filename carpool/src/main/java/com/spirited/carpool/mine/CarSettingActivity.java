@@ -11,12 +11,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.appframe.library.component.image.ImageLoader;
-import com.appframe.utils.logger.Logger;
 import com.spirited.carpool.R;
 import com.spirited.carpool.api.waitinghall.CarInfo;
 import com.spirited.support.AutoBaseTitleActivity;
 import com.spirited.support.component.TypefaceHelper;
+import com.spirited.support.logger.Logger;
 import com.spirited.support.utils.ImageUtil;
 import com.zhy.autolayout.utils.AutoUtils;
 
@@ -116,7 +115,7 @@ public class CarSettingActivity extends AutoBaseTitleActivity {
             ImageView imageView = new ImageView(this);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(AutoUtils.getPercentWidthSize(65), AutoUtils.getPercentWidthSize(65));
             imageView.setLayoutParams(layoutParams);
-            ImageLoader.normal(this, carInfo.pictures.get(i), R.drawable.default_image_white, imageView);
+            ImageUtil.normal(this, carInfo.pictures.get(i), R.drawable.default_image_white, imageView);
             root.addView(imageView);
 
             if (i % 4 != 3) {

@@ -1,6 +1,18 @@
 package com.spirited.support.constants;
 
+import android.util.Log;
+
 public class Constants {
+
+    /**
+     * 日志相关配置
+     */
+    public static String cache_dir = "com.spirited";
+    public static String log_tag = "Carpool";
+    public static int log_level = Log.DEBUG;
+
+    // sp storage
+    public static String sp_store_name = "Carpool";
 
     // 发布类型
     public static final String app_publish_tag_gray = "gray";       // 灰度发布

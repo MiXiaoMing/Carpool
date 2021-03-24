@@ -1,8 +1,8 @@
 package com.spirited.carpool.api;
 
-import com.appframe.library.network.http.AFHttpClient;
-import com.appframe.library.network.http.validate.DeserializeActionFactory;
 import com.google.gson.GsonBuilder;
+import com.spirited.support.network.AFHttpClient;
+import com.spirited.support.network.validate.DeserializeActionFactory;
 
 import java.util.List;
 

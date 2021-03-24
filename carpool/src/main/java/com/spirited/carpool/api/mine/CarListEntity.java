@@ -1,7 +1,7 @@
 package com.spirited.carpool.api.mine;
 
 import com.spirited.carpool.api.waitinghall.CarInfo;
-import com.spirited.support.common.BaseArrayResult;
+import com.spirited.support.network.result.BaseArrayResult;
 
 /**
  * 车辆 列表

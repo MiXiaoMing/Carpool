@@ -12,15 +12,15 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.appframe.library.component.notify.AFToast;
-import com.appframe.utils.logger.Logger;
 import com.baidu.mapapi.map.MapView;
 import com.spirited.carpool.R;
 import com.spirited.carpool.api.train.RouteEntity;
 import com.spirited.carpool.api.waitinghall.TrainEntity;
 import com.spirited.support.AutoBaseTitleActivity;
+import com.spirited.support.component.AFToast;
 import com.spirited.support.component.TypefaceHelper;
 import com.spirited.support.constants.RouteConstants;
+import com.spirited.support.logger.Logger;
 
 /**
  * 车次编辑页面

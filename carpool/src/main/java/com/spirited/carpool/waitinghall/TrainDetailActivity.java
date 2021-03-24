@@ -9,8 +9,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.appframe.library.component.image.ImageLoader;
-import com.appframe.utils.logger.Logger;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -29,6 +27,8 @@ import com.spirited.carpool.api.waitinghall.TrainStatistics;
 import com.spirited.carpool.api.waitinghall.WaitingHallManager;
 import com.spirited.support.AutoBaseTitleActivity;
 import com.spirited.support.constants.RouteConstants;
+import com.spirited.support.logger.Logger;
+import com.spirited.support.utils.ImageUtil;
 import com.spirited.support.utils.TimeUtils;
 
 import java.util.ArrayList;
@@ -74,7 +74,7 @@ public class TrainDetailActivity extends AutoBaseTitleActivity {
         tvContact.setText(entity.carInfo.contact);
         tvCarNumber.setText(entity.carInfo.carNumber);
         tvApprovedLoadNumber.setText("核载：" + entity.carInfo.approvedLoadNumber + "人");
-        ImageLoader.normal(this, entity.carInfo.cover, R.drawable.default_image_white, ivAvatar);
+        ImageUtil.normal(this, entity.carInfo.cover, R.drawable.default_image_white, ivAvatar);
         tvTotalOrderedCount.setText("已安全营运 " + entity.carInfo.totalOrderedCount + " 车次");
         tvOrderedNumber.setText(entity.train.orderedNumber + "/" + entity.carInfo.approvedLoadNumber);
         for (int i = 0; i < entity.routeEntities.size(); ++i) {

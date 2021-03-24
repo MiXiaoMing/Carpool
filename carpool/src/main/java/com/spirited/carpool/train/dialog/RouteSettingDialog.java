@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.spirited.carpool.R;
 import com.spirited.carpool.api.train.Route;
-import com.spirited.support.common.Callback;
+import com.spirited.support.Callback;
 import com.spirited.support.component.BaseDialog;
 import com.spirited.support.constants.RouteConstants;
 import com.spirited.support.utils.ReportUtil;

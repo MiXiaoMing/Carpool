@@ -2,8 +2,7 @@ package com.spirited.support.utils;
 
 import android.text.TextUtils;
 
-import com.appframe.library.storage.SharePreferences;
-import com.appframe.utils.logger.Logger;
+import com.spirited.support.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.Arrays;

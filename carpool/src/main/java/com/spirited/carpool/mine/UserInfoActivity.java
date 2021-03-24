@@ -8,16 +8,11 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.appframe.utils.logger.Logger;
 import com.spirited.carpool.R;
 import com.spirited.support.AutoBaseTitleActivity;
 import com.spirited.support.constants.Constants;
+import com.spirited.support.logger.Logger;
 import com.spirited.support.utils.UserInfoUtil;
-
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * 用户信息

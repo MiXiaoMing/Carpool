@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.appframe.utils.logger.Logger;
 import com.baidu.geofence.GeoFence;
 import com.baidu.geofence.GeoFenceClient;
 import com.baidu.geofence.GeoFenceListener;
@@ -20,8 +19,8 @@ import com.baidu.location.BDNotifyListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.spirited.carpool.R;
-import com.spirited.carpool.mine.LoginActivity;
 import com.spirited.support.AutoBaseTitleActivity;
+import com.spirited.support.logger.Logger;
 
 import java.util.List;
 
