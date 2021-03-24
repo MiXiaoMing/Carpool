@@ -2,11 +2,15 @@
   <library name="Gradle: com.tencent.tinker:tinker-android-loader:1.9.9@aar">
     <ANNOTATIONS>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/tinker-android-loader-1.9.9.aar/4690f9bfb513e735ab6b51ef75a2f5f4/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/tinker-android-loader-1.9.9.aar/7f6ce73ab4ab45bccd82f7a758be1608/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/tinker-android-loader-1.9.9.aar/4690f9bfb513e735ab6b51ef75a2f5f4/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/tinker-android-loader-1.9.9.aar/4690f9bfb513e735ab6b51ef75a2f5f4/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/tinker-android-loader-1.9.9.aar/4690f9bfb513e735ab6b51ef75a2f5f4/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/tinker-android-loader-1.9.9.aar/7f6ce73ab4ab45bccd82f7a758be1608/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/tinker-android-loader-1.9.9.aar/7f6ce73ab4ab45bccd82f7a758be1608/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/tinker-android-loader-1.9.9.aar/7f6ce73ab4ab45bccd82f7a758be1608/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
